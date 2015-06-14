@@ -38,10 +38,10 @@
             this.btnsalirPines = new System.Windows.Forms.Button();
             this.btnregistarpines = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -69,6 +69,7 @@
             this.btnguardarPines.TabIndex = 23;
             this.btnguardarPines.Text = "Guardar";
             this.btnguardarPines.UseVisualStyleBackColor = true;
+            this.btnguardarPines.Click += new System.EventHandler(this.btnguardarPines_Click);
             // 
             // txtregPines
             // 
@@ -154,13 +155,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(347, 197);
             this.dataGridView1.TabIndex = 25;
             // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(182, 4);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(219, 20);
-            this.dateTimePicker1.TabIndex = 24;
-            // 
             // Column1
             // 
             this.Column1.HeaderText = "Id_Pines";
@@ -179,6 +173,13 @@
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(182, 4);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(219, 20);
+            this.dateTimePicker1.TabIndex = 24;
+            // 
             // MscPines
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -196,6 +197,7 @@
             this.MinimizeBox = false;
             this.Name = "MscPines";
             this.Text = "MscPines";
+            this.Load += new System.EventHandler(this.MscPines_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

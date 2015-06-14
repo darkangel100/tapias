@@ -37,3 +37,5 @@ C:\Users\USER\Desktop\AplicacionProductosServicios\AplicacionProductosServicios\
 C:\Users\USER\Desktop\AplicacionProductosServicios\AplicacionProductosServicios\obj\x86\Debug\AplicacionProductosServicios.Vista.MscVenta.resources
 C:\Users\USER\Desktop\AplicacionProductosServicios\AplicacionProductosServicios\obj\x86\Debug\AplicacionProductosServicios.csproj.GenerateResource.Cache
 C:\Users\USER\Desktop\AplicacionProductosServicios\AplicacionProductosServicios\obj\x86\Debug\AplicacionProductosServicios.csprojResolveAssemblyReference.cache
+C:\Users\usuario\Desktop\Productos y servicios\AplicacionProductosServicios\obj\x86\Debug\AplicacionProductosServicios.exe
+C:\Users\usuario\Desktop\Productos y servicios\AplicacionProductosServicios\obj\x86\Debug\AplicacionProductosServicios.pdb

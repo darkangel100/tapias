@@ -7,8 +7,21 @@ namespace AplicacionProductosServicios.Modelo
 {
     class Rol
     {
-        private int id_rol;       
-        private String nombre;        
+        private string nombre;
+
+        public string Nombre
+        {
+            get { return nombre; }
+            set { nombre = value; }
+        }
+        private int id_rol;
+
+        public int Idrol
+        {
+            get { return id_rol; }
+            set { id_rol = value; }
+        }
+
         private List<Rol> listaRol = new List<Rol>();
 
         internal List<Rol> ListaRol
@@ -16,15 +29,12 @@ namespace AplicacionProductosServicios.Modelo
             get { return listaRol; }
             set { listaRol = value; }
         }
-        public int Id_rol
+        private string est_rol;
+
+        public string Estrol
         {
-            get { return id_rol; }
-            set { id_rol = value; }
-        }
-        public String Nombre
-        {
-            get { return nombre; }
-            set { nombre = value; }
+            get { return est_rol; }
+            set { est_rol = value; }
         }
 
     }
