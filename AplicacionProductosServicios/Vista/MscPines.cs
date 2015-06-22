@@ -17,8 +17,6 @@ namespace AplicacionProductosServicios.Vista
         {
             InitializeComponent();
         }
-        //delcaracion d evariables
-
         string estado = "G";
         int fila;
 
@@ -86,7 +84,7 @@ namespace AplicacionProductosServicios.Vista
 
         private void btnguardarPines_Click(object sender, EventArgs e)
         {
-            if (estado == "G")
+            if (estado =="G")
             {
                 llenar();
             }
@@ -95,7 +93,7 @@ namespace AplicacionProductosServicios.Vista
         private void MscPines_Load(object sender, EventArgs e)
         {
             llenaPines();
-
         }
+       
     }
 }

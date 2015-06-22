@@ -58,15 +58,6 @@ namespace AplicacionProductosServicios.Vista
             MscVenta objV = new MscVenta();
             objV.Show();
         }
-
-       
-
-        private void tssecretarias_Click(object sender, EventArgs e)
-        {
-            MscRegistraSecretaria objRS = new MscRegistraSecretaria();
-            objRS.Show();
-        }
-
         private void tsproducto_Click(object sender, EventArgs e)
         {
             MscProducto objP = new MscProducto();
@@ -76,6 +67,18 @@ namespace AplicacionProductosServicios.Vista
         private void tscerrarsitema_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void secretariaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MscRegistraSecretaria objRS = new MscRegistraSecretaria();
+            objRS.Show();
+        }
+
+        private void rolToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MscRol objr = new MscRol();
+            objr.Show();
         }
 
        

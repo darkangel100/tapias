@@ -28,15 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MscProducto));
-            this.txtbusProd = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.cboOpcionBusProd = new System.Windows.Forms.ComboBox();
-            this.btnguardarProd = new System.Windows.Forms.Button();
-            this.btnsalirProd = new System.Windows.Forms.Button();
-            this.btnmodificarProd = new System.Windows.Forms.Button();
-            this.btningresaProd = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rdbpasivoProd = new System.Windows.Forms.RadioButton();
             this.rdbactivoProd = new System.Windows.Forms.RadioButton();
@@ -53,7 +45,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnbuscaProd = new System.Windows.Forms.Button();
+            this.txtbusqProd = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.cboOpcionBusProd = new System.Windows.Forms.ComboBox();
+            this.btnguardarProd = new System.Windows.Forms.Button();
+            this.btnsalirProd = new System.Windows.Forms.Button();
+            this.btnmodificarProd = new System.Windows.Forms.Button();
+            this.btningresaProd = new System.Windows.Forms.Button();
             this.dgProducto = new System.Windows.Forms.DataGridView();
             this.idproducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -61,87 +60,22 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tot = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnBuscar = new System.Windows.Forms.Button();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgProducto)).BeginInit();
             this.SuspendLayout();
             // 
-            // txtbusProd
+            // panel1
             // 
-            this.txtbusProd.Location = new System.Drawing.Point(485, 24);
-            this.txtbusProd.Name = "txtbusProd";
-            this.txtbusProd.Size = new System.Drawing.Size(100, 20);
-            this.txtbusProd.TabIndex = 59;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(286, 21);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(46, 13);
-            this.label8.TabIndex = 58;
-            this.label8.Text = "Buscar";
-            // 
-            // cboOpcionBusProd
-            // 
-            this.cboOpcionBusProd.FormattingEnabled = true;
-            this.cboOpcionBusProd.Items.AddRange(new object[] {
-            "Nombre",
-            "Còdigo"});
-            this.cboOpcionBusProd.Location = new System.Drawing.Point(348, 21);
-            this.cboOpcionBusProd.Name = "cboOpcionBusProd";
-            this.cboOpcionBusProd.Size = new System.Drawing.Size(121, 21);
-            this.cboOpcionBusProd.TabIndex = 57;
-            this.cboOpcionBusProd.Text = "opcion de busqueda";
-            // 
-            // btnguardarProd
-            // 
-            this.btnguardarProd.Location = new System.Drawing.Point(68, 328);
-            this.btnguardarProd.Name = "btnguardarProd";
-            this.btnguardarProd.Size = new System.Drawing.Size(75, 23);
-            this.btnguardarProd.TabIndex = 56;
-            this.btnguardarProd.Text = "Guardar";
-            this.btnguardarProd.UseVisualStyleBackColor = true;
-            this.btnguardarProd.Click += new System.EventHandler(this.btnguardarProd_Click);
-            // 
-            // btnsalirProd
-            // 
-            this.btnsalirProd.Location = new System.Drawing.Point(301, 328);
-            this.btnsalirProd.Name = "btnsalirProd";
-            this.btnsalirProd.Size = new System.Drawing.Size(98, 23);
-            this.btnsalirProd.TabIndex = 54;
-            this.btnsalirProd.Text = "Salir";
-            this.btnsalirProd.UseVisualStyleBackColor = true;
-            this.btnsalirProd.Click += new System.EventHandler(this.btnsalirProd_Click);
-            // 
-            // btnmodificarProd
-            // 
-            this.btnmodificarProd.Location = new System.Drawing.Point(171, 328);
-            this.btnmodificarProd.Name = "btnmodificarProd";
-            this.btnmodificarProd.Size = new System.Drawing.Size(75, 23);
-            this.btnmodificarProd.TabIndex = 53;
-            this.btnmodificarProd.Text = "Modificar";
-            this.btnmodificarProd.UseVisualStyleBackColor = true;
-            // 
-            // btningresaProd
-            // 
-            this.btningresaProd.Location = new System.Drawing.Point(26, 36);
-            this.btningresaProd.Name = "btningresaProd";
-            this.btningresaProd.Size = new System.Drawing.Size(117, 27);
-            this.btningresaProd.TabIndex = 52;
-            this.btningresaProd.Text = "Ingresar Producto ";
-            this.btningresaProd.UseVisualStyleBackColor = true;
-            this.btningresaProd.Click += new System.EventHandler(this.btningresaProd_Click);
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(12, 10);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 50;
+            this.panel1.Controls.Add(this.groupBox1);
+            this.panel1.Controls.Add(this.groupBox2);
+            this.panel1.Enabled = false;
+            this.panel1.Location = new System.Drawing.Point(58, 69);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(494, 252);
+            this.panel1.TabIndex = 72;
             // 
             // groupBox1
             // 
@@ -229,7 +163,6 @@
             this.txtstock.Name = "txtstock";
             this.txtstock.Size = new System.Drawing.Size(80, 20);
             this.txtstock.TabIndex = 7;
-            this.txtstock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtstock_KeyPress);
             // 
             // txtcantgan
             // 
@@ -237,7 +170,6 @@
             this.txtcantgan.Name = "txtcantgan";
             this.txtcantgan.Size = new System.Drawing.Size(80, 20);
             this.txtcantgan.TabIndex = 9;
-            this.txtcantgan.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtcantgan_KeyPress);
             // 
             // label5
             // 
@@ -254,7 +186,6 @@
             this.txtpreComp.Name = "txtpreComp";
             this.txtpreComp.Size = new System.Drawing.Size(80, 20);
             this.txtpreComp.TabIndex = 6;
-            this.txtpreComp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtpreComp_KeyPress);
             // 
             // txtnompro
             // 
@@ -262,7 +193,6 @@
             this.txtnompro.Name = "txtnompro";
             this.txtnompro.Size = new System.Drawing.Size(80, 20);
             this.txtnompro.TabIndex = 5;
-            this.txtnompro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtnompro_KeyPress);
             // 
             // txtCodProd
             // 
@@ -270,7 +200,6 @@
             this.txtCodProd.Name = "txtCodProd";
             this.txtCodProd.Size = new System.Drawing.Size(80, 20);
             this.txtCodProd.TabIndex = 4;
-            this.txtCodProd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodProd_KeyPress);
             // 
             // label3
             // 
@@ -299,15 +228,82 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Codigo";
             // 
-            // panel1
+            // btnbuscaProd
             // 
-            this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Controls.Add(this.groupBox2);
-            this.panel1.Enabled = false;
-            this.panel1.Location = new System.Drawing.Point(43, 70);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(494, 252);
-            this.panel1.TabIndex = 62;
+            this.btnbuscaProd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnbuscaProd.Location = new System.Drawing.Point(600, 21);
+            this.btnbuscaProd.Name = "btnbuscaProd";
+            this.btnbuscaProd.Size = new System.Drawing.Size(29, 27);
+            this.btnbuscaProd.TabIndex = 71;
+            this.btnbuscaProd.UseVisualStyleBackColor = true;
+            // 
+            // txtbusqProd
+            // 
+            this.txtbusqProd.Location = new System.Drawing.Point(494, 24);
+            this.txtbusqProd.Name = "txtbusqProd";
+            this.txtbusqProd.Size = new System.Drawing.Size(100, 20);
+            this.txtbusqProd.TabIndex = 70;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(295, 21);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(46, 13);
+            this.label8.TabIndex = 69;
+            this.label8.Text = "Buscar";
+            // 
+            // cboOpcionBusProd
+            // 
+            this.cboOpcionBusProd.FormattingEnabled = true;
+            this.cboOpcionBusProd.Items.AddRange(new object[] {
+            "Nombre",
+            "Còdigo"});
+            this.cboOpcionBusProd.Location = new System.Drawing.Point(357, 21);
+            this.cboOpcionBusProd.Name = "cboOpcionBusProd";
+            this.cboOpcionBusProd.Size = new System.Drawing.Size(121, 21);
+            this.cboOpcionBusProd.TabIndex = 68;
+            this.cboOpcionBusProd.Text = "opcion de busqueda";
+            // 
+            // btnguardarProd
+            // 
+            this.btnguardarProd.Location = new System.Drawing.Point(82, 327);
+            this.btnguardarProd.Name = "btnguardarProd";
+            this.btnguardarProd.Size = new System.Drawing.Size(75, 23);
+            this.btnguardarProd.TabIndex = 67;
+            this.btnguardarProd.Text = "Guardar";
+            this.btnguardarProd.UseVisualStyleBackColor = true;
+            this.btnguardarProd.Click += new System.EventHandler(this.btnguardarProd_Click);
+            // 
+            // btnsalirProd
+            // 
+            this.btnsalirProd.Location = new System.Drawing.Point(315, 327);
+            this.btnsalirProd.Name = "btnsalirProd";
+            this.btnsalirProd.Size = new System.Drawing.Size(98, 23);
+            this.btnsalirProd.TabIndex = 66;
+            this.btnsalirProd.Text = "Salir";
+            this.btnsalirProd.UseVisualStyleBackColor = true;
+            // 
+            // btnmodificarProd
+            // 
+            this.btnmodificarProd.Location = new System.Drawing.Point(185, 327);
+            this.btnmodificarProd.Name = "btnmodificarProd";
+            this.btnmodificarProd.Size = new System.Drawing.Size(75, 23);
+            this.btnmodificarProd.TabIndex = 65;
+            this.btnmodificarProd.Text = "Modificar";
+            this.btnmodificarProd.UseVisualStyleBackColor = true;
+            this.btnmodificarProd.Click += new System.EventHandler(this.btnmodificarProd_Click_1);
+            // 
+            // btningresaProd
+            // 
+            this.btningresaProd.Location = new System.Drawing.Point(35, 36);
+            this.btningresaProd.Name = "btningresaProd";
+            this.btningresaProd.Size = new System.Drawing.Size(117, 27);
+            this.btningresaProd.TabIndex = 64;
+            this.btningresaProd.Text = "Ingresar Producto ";
+            this.btningresaProd.UseVisualStyleBackColor = true;
+            this.btningresaProd.Click += new System.EventHandler(this.btningresaProd_Click_1);
             // 
             // dgProducto
             // 
@@ -321,10 +317,10 @@
             this.Column2,
             this.Column1,
             this.Tot});
-            this.dgProducto.Location = new System.Drawing.Point(12, 357);
+            this.dgProducto.Location = new System.Drawing.Point(35, 374);
             this.dgProducto.Name = "dgProducto";
             this.dgProducto.ReadOnly = true;
-            this.dgProducto.Size = new System.Drawing.Size(643, 181);
+            this.dgProducto.Size = new System.Drawing.Size(645, 153);
             this.dgProducto.TabIndex = 63;
             // 
             // idproducto
@@ -363,40 +359,37 @@
             this.Tot.Name = "Tot";
             this.Tot.ReadOnly = true;
             // 
-            // btnBuscar
+            // dateTimePicker1
             // 
-            this.btnBuscar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
-            this.btnBuscar.Location = new System.Drawing.Point(605, 21);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(29, 27);
-            this.btnBuscar.TabIndex = 64;
-            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.dateTimePicker1.Location = new System.Drawing.Point(21, 10);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.TabIndex = 62;
             // 
             // MscProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(662, 547);
-            this.Controls.Add(this.btnBuscar);
-            this.Controls.Add(this.dgProducto);
+            this.ClientSize = new System.Drawing.Size(707, 600);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.txtbusProd);
+            this.Controls.Add(this.btnbuscaProd);
+            this.Controls.Add(this.txtbusqProd);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.cboOpcionBusProd);
             this.Controls.Add(this.btnguardarProd);
             this.Controls.Add(this.btnsalirProd);
             this.Controls.Add(this.btnmodificarProd);
             this.Controls.Add(this.btningresaProd);
+            this.Controls.Add(this.dgProducto);
             this.Controls.Add(this.dateTimePicker1);
             this.Name = "MscProducto";
             this.Text = "MscProducto";
-            this.Load += new System.EventHandler(this.MscProducto_Load);
+            this.Load += new System.EventHandler(this.MscProducto_Load_1);
+            this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgProducto)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -405,14 +398,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtbusProd;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox cboOpcionBusProd;
-        private System.Windows.Forms.Button btnguardarProd;
-        private System.Windows.Forms.Button btnsalirProd;
-        private System.Windows.Forms.Button btnmodificarProd;
-        private System.Windows.Forms.Button btningresaProd;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton rdbpasivoProd;
         private System.Windows.Forms.RadioButton rdbactivoProd;
@@ -429,7 +415,14 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnbuscaProd;
+        private System.Windows.Forms.TextBox txtbusqProd;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox cboOpcionBusProd;
+        private System.Windows.Forms.Button btnguardarProd;
+        private System.Windows.Forms.Button btnsalirProd;
+        private System.Windows.Forms.Button btnmodificarProd;
+        private System.Windows.Forms.Button btningresaProd;
         private System.Windows.Forms.DataGridView dgProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn idproducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
@@ -437,6 +430,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Tot;
-        private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+
     }
 }

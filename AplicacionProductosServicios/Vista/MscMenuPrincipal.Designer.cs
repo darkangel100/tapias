@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MscMenuPrincipal));
             this.label2 = new System.Windows.Forms.Label();
             this.dtpfecha = new System.Windows.Forms.DateTimePicker();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tspines = new System.Windows.Forms.ToolStripMenuItem();
             this.tsrecargas = new System.Windows.Forms.ToolStripMenuItem();
             this.tsinternet = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,8 +49,11 @@
             this.tssalir = new System.Windows.Forms.ToolStripMenuItem();
             this.tscerrarsitema = new System.Windows.Forms.ToolStripMenuItem();
             this.mnsprincipal = new System.Windows.Forms.MenuStrip();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.rolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.secretariaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.mnsprincipal.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -70,20 +72,10 @@
             // 
             this.dtpfecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpfecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpfecha.Location = new System.Drawing.Point(639, 29);
+            this.dtpfecha.Location = new System.Drawing.Point(621, 27);
             this.dtpfecha.Name = "dtpfecha";
-            this.dtpfecha.Size = new System.Drawing.Size(102, 20);
+            this.dtpfecha.Size = new System.Drawing.Size(129, 20);
             this.dtpfecha.TabIndex = 5;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(265, 111);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(162, 141);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 7;
-            this.pictureBox1.TabStop = false;
             // 
             // tspines
             // 
@@ -185,10 +177,13 @@
             // 
             // tssecretarias
             // 
+            this.tssecretarias.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.rolToolStripMenuItem,
+            this.secretariaToolStripMenuItem});
             this.tssecretarias.Name = "tssecretarias";
-            this.tssecretarias.Size = new System.Drawing.Size(70, 20);
-            this.tssecretarias.Text = "Secretaria";
-            this.tssecretarias.Click += new System.EventHandler(this.tssecretarias_Click);
+            this.tssecretarias.Size = new System.Drawing.Size(61, 20);
+            this.tssecretarias.Text = "Persona";
+           // this.tssecretarias.Click += new System.EventHandler(this.tssecretarias_Click);
             // 
             // tssalir
             // 
@@ -225,6 +220,30 @@
             this.mnsprincipal.TabIndex = 8;
             this.mnsprincipal.Text = "menuStrip1";
             // 
+            // rolToolStripMenuItem
+            // 
+            this.rolToolStripMenuItem.Name = "rolToolStripMenuItem";
+            this.rolToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.rolToolStripMenuItem.Text = "Rol";
+            this.rolToolStripMenuItem.Click += new System.EventHandler(this.rolToolStripMenuItem_Click);
+            // 
+            // secretariaToolStripMenuItem
+            // 
+            this.secretariaToolStripMenuItem.Name = "secretariaToolStripMenuItem";
+            this.secretariaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.secretariaToolStripMenuItem.Text = "Secretaria";
+            this.secretariaToolStripMenuItem.Click += new System.EventHandler(this.secretariaToolStripMenuItem_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(265, 111);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(162, 141);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.TabStop = false;
+            // 
             // MscMenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -238,9 +257,9 @@
             this.IsMdiContainer = true;
             this.Name = "MscMenuPrincipal";
             this.Text = "MSC Menu Principal";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.mnsprincipal.ResumeLayout(false);
             this.mnsprincipal.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -269,5 +288,7 @@
         private System.Windows.Forms.ToolStripMenuItem tssalir;
         private System.Windows.Forms.ToolStripMenuItem tscerrarsitema;
         private System.Windows.Forms.MenuStrip mnsprincipal;
+        private System.Windows.Forms.ToolStripMenuItem rolToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem secretariaToolStripMenuItem;
     }
 }

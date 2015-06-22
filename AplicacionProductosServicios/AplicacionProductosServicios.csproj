@@ -127,6 +127,12 @@
     <Compile Include="Vista\MscRegistraSecretaria.Designer.cs">
       <DependentUpon>MscRegistraSecretaria.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vista\MscRol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vista\MscRol.Designer.cs">
+      <DependentUpon>MscRol.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vista\MscVenta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -172,6 +178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vista\MscRegistraSecretaria.resx">
       <DependentUpon>MscRegistraSecretaria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vista\MscRol.resx">
+      <DependentUpon>MscRol.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vista\MscVenta.resx">
       <DependentUpon>MscVenta.cs</DependentUpon>

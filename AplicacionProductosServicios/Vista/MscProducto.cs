@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using AplicacionProductosServicios.Controlador;
+using AplicacionProductosServicios.Modelo;
 
 namespace AplicacionProductosServicios.Vista
 {
@@ -16,38 +17,10 @@ namespace AplicacionProductosServicios.Vista
         {
             InitializeComponent();
         }
-        //Declaracion de las variables,,
+        //declracion de las variables..
         int fila;
         string estado = "";
 
-        private void MscProducto_Load(object sender, EventArgs e)
-        {
-            llenaProducto();
-
-        }
-
-        private void btningresaProd_Click(object sender, EventArgs e)
-        {
-            estado = "N";
-            panel1.Enabled = true;
-            txtCodProd.Text = "";
-            txtnompro.Text = "";
-            txtpreComp.Text = "";
-            txtstock.Text = "";
-            txtcantgan.Text = "";
-            txtpreciovent.Text = "";
-            txtCodProd.Focus();
-
-        }
-
-        private void btnguardarProd_Click(object sender, EventArgs e)
-        {
-            if (estado == "N")
-            {
-                adiciona();
-            }
-
-        }
         private void adiciona()
         {
             try
@@ -120,80 +93,51 @@ namespace AplicacionProductosServicios.Vista
             }
 
         }
-
-        private void btnsalirProd_Click(object sender, EventArgs e)
+        private void modificar()
         {
-            Application.Exit();
+            try
+            {               
+                ProductoDB objP = new ProductoDB();
+                // objP.setProductos(objP.TraeProductos(dgProducto.Rows[fila].Cells[0].Value.ToString());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al presentar los datos," + ex.Message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
-        private void txtCodProd_KeyPress(object sender, KeyPressEventArgs e)
+        private void btningresaProd_Click_1(object sender, EventArgs e)
         {
-            char letra = e.KeyChar;
-            if (letra == 13)
-            {
-                txtnompro.Focus();
-            }
+            estado = "N";
+            panel1.Enabled = true;
+            txtCodProd.Text = "";
+            txtnompro.Text = "";
+            txtpreComp.Text = "";
+            txtstock.Text = "";
+            txtcantgan.Text = "";
+            txtpreciovent.Text = "";
+            txtCodProd.Focus();
         }
 
-        private void txtnompro_KeyPress(object sender, KeyPressEventArgs e)
+        private void btnguardarProd_Click(object sender, EventArgs e)
         {
-            char letra = e.KeyChar;
-            if ((letra < 'a' || letra > 'z') && (letra < 'A' || letra > 'Z') && letra != 13 && letra != 32 && letra != 8 && letra != 9)
-            {
-                e.Handled = true;
-                MessageBox.Show("Por favor ingrese solo letras");
-            }
-            if (letra == 13)
-            {
-                txtstock.Focus();
-            }
-        }
 
-        private void txtstock_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char letra = e.KeyChar;
-            if ((letra < '0' || letra > '9') && letra != 13 && letra != 8 && letra != 9 && letra != 32 && letra != 44)
+            if (estado == "N")
             {
-                e.Handled = true;
-                MessageBox.Show("Por favor ingrese solo numeros");
-            }
-            if (letra == 13)
-            {
-                txtpreComp.Focus();
+                adiciona();
             }
         }
 
-        private void txtpreComp_KeyPress(object sender, KeyPressEventArgs e)
+        private void MscProducto_Load_1(object sender, EventArgs e)
         {
-            char letra = e.KeyChar;
-            if ((letra < '0' || letra > '9') && letra != 13 && letra != 8 && letra != 9 && letra != 32 && letra != 44)
-            {
-                e.Handled = true;
-                MessageBox.Show("Por favor ingrese solo numeros");
-            }
-            if (letra == 13)
-            {
-                txtcantgan.Focus();
-            }
+            llenaProducto();
         }
 
-        private void txtcantgan_KeyPress(object sender, KeyPressEventArgs e)
+        private void btnmodificarProd_Click_1(object sender, EventArgs e)
         {
-            char letra = e.KeyChar;
-            if ((letra < '0' || letra > '9') && letra != 13 && letra != 8 && letra != 9 && letra != 32 && letra != 44)
-            {
-                e.Handled = true;
-                MessageBox.Show("Por favor ingrese solo numeros");
-            }
-            double pago;
-            if (letra == 13)
-            {
-                pago = Convert.ToDouble(txtpreComp.Text) + Convert.ToDouble(txtcantgan.Text);
-                txtpreciovent.Text = pago.ToString();
-            }
+            modificar();
+            panel1.Enabled = true;
         }
-
-        
-        
     }
 }

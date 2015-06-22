@@ -17,7 +17,6 @@ namespace AplicacionProductosServicios.Vista
         {
             InitializeComponent();
         }
-
         //DEclaracion de variables a utilizar..
         string estado = "";
         int fila = 0;
@@ -35,6 +34,7 @@ namespace AplicacionProductosServicios.Vista
             txtcedSecret.Focus();
             estado = "G";
         }
+
         private void genId()
         {
             int nro;
@@ -42,6 +42,8 @@ namespace AplicacionProductosServicios.Vista
             nro = objusu.traeid();
             txtid.Text = Util.generarid(nro).ToString();
         }
+
+
         private void cargarol(string est)
         {
             try
@@ -176,8 +178,8 @@ namespace AplicacionProductosServicios.Vista
                 txtapeSecret.Focus();
             }
         }
-
-        private void txtapeSecret_KeyPress(object sender, KeyPressEventArgs e)
+        //Validacion para el ingreso de datos
+        private void txtnomSecret_KeyPress(object sender, KeyPressEventArgs e)
         {
             char letra = e.KeyChar;
             if ((letra < 'a' || letra > 'z') & (letra < 'A' || letra > 'Z') & letra != 8 & letra != 13 & letra != 32)
@@ -190,7 +192,7 @@ namespace AplicacionProductosServicios.Vista
             }
         }
 
-        private void txtnomsecret_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtnomsecret_KeyPress_1(object sender, KeyPressEventArgs e)
         {
             char letra = e.KeyChar;
             if ((letra < 'a' || letra > 'z') & (letra < 'A' || letra > 'Z') & letra != 8 & letra != 13 & letra != 32)
@@ -228,6 +230,7 @@ namespace AplicacionProductosServicios.Vista
                 groupBox2.Focus();
             }
         }
+
         public void LimpiarCampos()
         {
             txtcedSecret.Text = null;
@@ -250,6 +253,70 @@ namespace AplicacionProductosServicios.Vista
             else
                 cuen.getCuenta().Estper = "D";
             return cuen;
-        }      
+        }
+        private void btnmodificarSecre_Click(object sender, EventArgs e)
+        {
+            Modificar();
+            groupBox1.Enabled = true;
+        }
+        private void Modificar()
+        {
+            UsuarioDB objSecre = new UsuarioDB();
+            CuentaDB objC = new CuentaDB();
+            objSecre.setUsuario(objSecre.Traepersona(dgSecretaria.Rows[fila].Cells[0].Value.ToString()));
+            if (objSecre.getUsuario().Cedper == "")
+            {
+                MessageBox.Show("No existen Registros de Usuarios", "Productos y Servicios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                txtcedSecret.Text = objSecre.getUsuario().Cedper;
+                txtapeSecret.Text = objSecre.getUsuario().Nomper;
+                txtnomsecret.Text = objSecre.getUsuario().Apeper;
+                txtdirecSecret.Text = objSecre.getUsuario().Dirper;
+                txttelSecret.Text = objSecre.getUsuario().Telper;
+                txtclave.Text = objC.getCuenta().Clave;
+                if (objSecre.getUsuario().Estper.Equals("A"))
+                    rdbactivo.Checked = true;
+                else
+                    rdbdesactivo.Checked = true;
+                estado = "E";
+
+            }
+        }
+        /*private void CambiarDatos()
+        {
+            try
+            {
+                UsuarioDB objse = new UsuarioDB();
+                int resp;
+                //objse.getUsuario().Cedper = txtcedSecret.Text;
+                llenaUsuario(objse);
+                resp = objse.ActualizaUsuario(objse.getUsuario());
+                if (resp == 0)
+                {
+                    MessageBox.Show("No se Modificaron los datos del Usuario", "Productos y Servicios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    MessageBox.Show("Usuario Modificado exitosamente", "Productos y Servicios", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                   llenarPersona("A");
+                    estado = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al Modificar datos," + ex.Message, "Productos y Serviscios", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }*/
+
+        private void dgSecretaria_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            fila = dgSecretaria.CurrentRow.Index;
+
+        }
     }
 }
+
+    
