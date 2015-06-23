@@ -35,6 +35,7 @@
             this.cboOpcionBus = new System.Windows.Forms.ComboBox();
             this.btnmodificarSecre = new System.Windows.Forms.Button();
             this.dgSecretaria = new System.Windows.Forms.DataGridView();
+            this.id_per = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,6 +44,8 @@
             this.btnsalir_Secret = new System.Windows.Forms.Button();
             this.btnregistrar_secret = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtid = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.cborol = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtclave = new System.Windows.Forms.TextBox();
@@ -61,8 +64,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtid = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgSecretaria)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -84,7 +85,6 @@
             this.txtbusSecret.Name = "txtbusSecret";
             this.txtbusSecret.Size = new System.Drawing.Size(100, 20);
             this.txtbusSecret.TabIndex = 57;
-            //this.txtbusSecret.TextChanged += new System.EventHandler(this.txtbusSecret_TextChanged);
             // 
             // label8
             // 
@@ -95,7 +95,6 @@
             this.label8.Size = new System.Drawing.Size(46, 13);
             this.label8.TabIndex = 56;
             this.label8.Text = "Buscar";
-            //this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // cboOpcionBus
             // 
@@ -108,7 +107,6 @@
             this.cboOpcionBus.Size = new System.Drawing.Size(121, 21);
             this.cboOpcionBus.TabIndex = 55;
             this.cboOpcionBus.Text = "opcion de busqueda";
-            //this.cboOpcionBus.SelectedIndexChanged += new System.EventHandler(this.cboOpcionBus_SelectedIndexChanged);
             // 
             // btnmodificarSecre
             // 
@@ -119,7 +117,7 @@
             this.btnmodificarSecre.TabIndex = 54;
             this.btnmodificarSecre.Text = "Modificar";
             this.btnmodificarSecre.UseVisualStyleBackColor = true;
-           // this.btnmodificarSecre.Click += new System.EventHandler(this.btnmodificarSecre_Click);
+            this.btnmodificarSecre.Click += new System.EventHandler(this.btnmodificarSecre_Click_1);
             // 
             // dgSecretaria
             // 
@@ -127,6 +125,7 @@
             this.dgSecretaria.AllowUserToDeleteRows = false;
             this.dgSecretaria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgSecretaria.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.id_per,
             this.Column1,
             this.Column3,
             this.Column2,
@@ -137,7 +136,13 @@
             this.dgSecretaria.ReadOnly = true;
             this.dgSecretaria.Size = new System.Drawing.Size(543, 152);
             this.dgSecretaria.TabIndex = 53;
-           // this.dgSecretaria.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgSecretaria_CellContentClick);
+            // 
+            // id_per
+            // 
+            this.id_per.HeaderText = "idper";
+            this.id_per.Name = "id_per";
+            this.id_per.ReadOnly = true;
+            this.id_per.Visible = false;
             // 
             // Column1
             // 
@@ -219,7 +224,25 @@
             this.groupBox1.TabIndex = 45;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos personales de la Secretaria";
-            //this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // txtid
+            // 
+            this.txtid.Location = new System.Drawing.Point(522, 147);
+            this.txtid.MaxLength = 10;
+            this.txtid.Name = "txtid";
+            this.txtid.Size = new System.Drawing.Size(62, 25);
+            this.txtid.TabIndex = 32;
+            this.txtid.Visible = false;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(437, 150);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(79, 17);
+            this.label7.TabIndex = 31;
+            this.label7.Text = "Id Persona";
+            this.label7.Visible = false;
             // 
             // cborol
             // 
@@ -392,28 +415,11 @@
             this.label1.TabIndex = 10;
             this.label1.Text = "Nombres";
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(437, 150);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(79, 17);
-            this.label7.TabIndex = 31;
-            this.label7.Text = "Id Persona";
-            // 
-            // txtid
-            // 
-            this.txtid.Location = new System.Drawing.Point(522, 147);
-            this.txtid.MaxLength = 10;
-            this.txtid.Name = "txtid";
-            this.txtid.Size = new System.Drawing.Size(62, 25);
-            this.txtid.TabIndex = 32;
-            // 
             // MscRegistraSecretaria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(697, 582);
+            this.ClientSize = new System.Drawing.Size(720, 582);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.txtbusSecret);
             this.Controls.Add(this.label8);
@@ -463,16 +469,17 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.RadioButton rdbdesactivo;
         private System.Windows.Forms.RadioButton rdbactivo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.TextBox txtclave;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox cborol;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtid;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_per;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
     }
 }

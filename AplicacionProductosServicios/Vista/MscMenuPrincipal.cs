@@ -69,17 +69,20 @@ namespace AplicacionProductosServicios.Vista
             Application.Exit();
         }
 
-        private void secretariaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MscRegistraSecretaria objRS = new MscRegistraSecretaria();
-            objRS.Show();
-        }
-
+        
         private void rolToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MscRol objr = new MscRol();
             objr.Show();
         }
+
+        private void tssecretarias_Click(object sender, EventArgs e)
+        {
+
+            MscRegistraSecretaria objRS = new MscRegistraSecretaria();
+            objRS.Show();
+        }
+
 
        
     }

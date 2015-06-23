@@ -49,8 +49,6 @@
             this.tssalir = new System.Windows.Forms.ToolStripMenuItem();
             this.tscerrarsitema = new System.Windows.Forms.ToolStripMenuItem();
             this.mnsprincipal = new System.Windows.Forms.MenuStrip();
-            this.rolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.secretariaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.mnsprincipal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -177,13 +175,10 @@
             // 
             // tssecretarias
             // 
-            this.tssecretarias.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.rolToolStripMenuItem,
-            this.secretariaToolStripMenuItem});
             this.tssecretarias.Name = "tssecretarias";
-            this.tssecretarias.Size = new System.Drawing.Size(61, 20);
-            this.tssecretarias.Text = "Persona";
-           // this.tssecretarias.Click += new System.EventHandler(this.tssecretarias_Click);
+            this.tssecretarias.Size = new System.Drawing.Size(70, 20);
+            this.tssecretarias.Text = "Secretaria";
+            this.tssecretarias.Click += new System.EventHandler(this.tssecretarias_Click);
             // 
             // tssalir
             // 
@@ -219,20 +214,6 @@
             this.mnsprincipal.Size = new System.Drawing.Size(750, 24);
             this.mnsprincipal.TabIndex = 8;
             this.mnsprincipal.Text = "menuStrip1";
-            // 
-            // rolToolStripMenuItem
-            // 
-            this.rolToolStripMenuItem.Name = "rolToolStripMenuItem";
-            this.rolToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.rolToolStripMenuItem.Text = "Rol";
-            this.rolToolStripMenuItem.Click += new System.EventHandler(this.rolToolStripMenuItem_Click);
-            // 
-            // secretariaToolStripMenuItem
-            // 
-            this.secretariaToolStripMenuItem.Name = "secretariaToolStripMenuItem";
-            this.secretariaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.secretariaToolStripMenuItem.Text = "Secretaria";
-            this.secretariaToolStripMenuItem.Click += new System.EventHandler(this.secretariaToolStripMenuItem_Click);
             // 
             // pictureBox1
             // 
@@ -288,7 +269,5 @@
         private System.Windows.Forms.ToolStripMenuItem tssalir;
         private System.Windows.Forms.ToolStripMenuItem tscerrarsitema;
         private System.Windows.Forms.MenuStrip mnsprincipal;
-        private System.Windows.Forms.ToolStripMenuItem rolToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem secretariaToolStripMenuItem;
     }
 }

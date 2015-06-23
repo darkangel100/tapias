@@ -56,7 +56,7 @@ namespace AplicacionProductosServicios.Vista
                     MessageBox.Show("No existen usuarios registrados", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
                 cborol.DisplayMember = "Nombre";
-                cborol.ValueMember = "Nombre";
+                cborol.ValueMember = "Idrol";
                 cborol.DataSource = objr.getrol().ListaRol;
                 //aqui el código
             }
@@ -99,7 +99,7 @@ namespace AplicacionProductosServicios.Vista
 
         private UsuarioDB llenaUsuario(UsuarioDB per)
         {
-            rolDB r = new rolDB();
+            
             per.getUsuario().Idper = Convert.ToInt32(txtid.Text.Trim());
             per.getUsuario().Cedper = txtcedSecret.Text.Trim();
             per.getUsuario().Apeper = txtnomsecret.Text.Trim();
@@ -114,7 +114,7 @@ namespace AplicacionProductosServicios.Vista
             /* if (rdnprpiet.Checked == true)
               per.getUsuario()*/
 
-            per.getUsuario().Idrol = r.treidsefunnom(cborol.SelectedValue.ToString());
+            per.getUsuario().Idrol = Convert.ToInt32(cborol.SelectedValue.ToString());
 
             return per;
         }
@@ -136,12 +136,13 @@ namespace AplicacionProductosServicios.Vista
                     for (int i = 0; i < objU.getUsuario().ListaPersonas.Count; i++)
                     {
                         dgSecretaria.Rows.Add(1);
-                        dgSecretaria.Rows[i].Cells[0].Value = objU.getUsuario().ListaPersonas[i].Cedper;
-                        dgSecretaria.Rows[i].Cells[1].Value = objU.getUsuario().ListaPersonas[i].Apeper;
-                        dgSecretaria.Rows[i].Cells[2].Value = objU.getUsuario().ListaPersonas[i].Nomper;
-                        dgSecretaria.Rows[i].Cells[3].Value = objU.getUsuario().ListaPersonas[i].Dirper;
-                        dgSecretaria.Rows[i].Cells[4].Value = objU.getUsuario().ListaPersonas[i].Telper;
-                        //dgSecretaria.Rows[i].Cells[5].Value = objU.getUsuario().ListaPersonas[i].Estper;
+                        dgSecretaria.Rows[i].Cells[0].Value = objU.getUsuario().ListaPersonas[i].Idper;
+                        dgSecretaria.Rows[i].Cells[1].Value = objU.getUsuario().ListaPersonas[i].Cedper;
+                        dgSecretaria.Rows[i].Cells[2].Value = objU.getUsuario().ListaPersonas[i].Apeper;
+                        dgSecretaria.Rows[i].Cells[3].Value = objU.getUsuario().ListaPersonas[i].Nomper;
+                        dgSecretaria.Rows[i].Cells[4].Value = objU.getUsuario().ListaPersonas[i].Dirper;
+                        dgSecretaria.Rows[i].Cells[5].Value = objU.getUsuario().ListaPersonas[i].Telper;
+                        //dgSecretaria.Rows[i].Cells[6].Value = objU.getUsuario().ListaPersonas[i].Estper;
                     }
                 }
             }
@@ -163,6 +164,10 @@ namespace AplicacionProductosServicios.Vista
             if (estado == "G")
             {
                 llenar();
+            }
+            if(estado=="E")
+            {
+                CambiarDatos();
             }
         }
 
@@ -254,22 +259,19 @@ namespace AplicacionProductosServicios.Vista
                 cuen.getCuenta().Estper = "D";
             return cuen;
         }
-        private void btnmodificarSecre_Click(object sender, EventArgs e)
-        {
-            Modificar();
-            groupBox1.Enabled = true;
-        }
+  
         private void Modificar()
         {
             UsuarioDB objSecre = new UsuarioDB();
             CuentaDB objC = new CuentaDB();
-            objSecre.setUsuario(objSecre.Traepersona(dgSecretaria.Rows[fila].Cells[0].Value.ToString()));
+            objSecre.setUsuario(objSecre.Traepersona(dgSecretaria.Rows[fila].Cells[1].Value.ToString()));
             if (objSecre.getUsuario().Cedper == "")
             {
                 MessageBox.Show("No existen Registros de Usuarios", "Productos y Servicios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
+                txtid.Text = objSecre.getUsuario().Idper.ToString();
                 txtcedSecret.Text = objSecre.getUsuario().Cedper;
                 txtapeSecret.Text = objSecre.getUsuario().Nomper;
                 txtnomsecret.Text = objSecre.getUsuario().Apeper;
@@ -284,7 +286,7 @@ namespace AplicacionProductosServicios.Vista
 
             }
         }
-        /*private void CambiarDatos()
+        private void CambiarDatos()
         {
             try
             {
@@ -309,12 +311,18 @@ namespace AplicacionProductosServicios.Vista
                 MessageBox.Show("Error al Modificar datos," + ex.Message, "Productos y Serviscios", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-        }*/
+        }
 
         private void dgSecretaria_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             fila = dgSecretaria.CurrentRow.Index;
 
+        }
+
+        private void btnmodificarSecre_Click_1(object sender, EventArgs e)
+        {
+            Modificar();
+            groupBox1.Enabled = true;
         }
     }
 }

@@ -116,7 +116,7 @@ namespace AplicacionProductosServicios.Controlador
                 while (mdr.Read())
                 {
                     persona = new UsuarioDB();
-                   // persona.getUsuario().Idper = Convert.ToInt32(mdr["id_per"]);
+                    persona.getUsuario().Idper = Convert.ToInt32(mdr["id_per"]);
                     persona.getUsuario().Cedper = mdr[1].ToString();
                     persona.getUsuario().Apeper = mdr[3].ToString();
                     persona.getUsuario().Nomper = mdr[2].ToString();
@@ -151,7 +151,7 @@ namespace AplicacionProductosServicios.Controlador
 
             try
             {
-                string sqlecad = "Select * from perosna where ced_per='" + ced + "'";
+                string sqlecad = "Select * from persona where ce_per='" + ced + "'";
                 cmd = new MySqlCommand(sqlecad, cn);
                 cmd.CommandType = CommandType.Text;
                 cn.Open();
@@ -184,6 +184,34 @@ namespace AplicacionProductosServicios.Controlador
             cmd = null;
             cn.Close();
             return persona.getUsuario();
+        }
+        public int ActualizaUsuario(Usuario secre)
+        {
+            MySqlCommand cmd;
+            MySqlConnection cn = con.getconection();
+            int resp;
+            try
+            {
+                string sqlsecret = "Update persona set ce_per='" + secre.Cedper + "',ape_per='" + secre.Apeper + "',nom_per='" + secre.Nomper + "',dir_per='" + secre.Dirper + "',tel_per=" + secre.Telper + " Where id_per= " + secre.Idper + "";
+                cmd = new MySqlCommand(sqlsecret, cn);
+                cmd.CommandType = CommandType.Text;
+                cn.Open();
+                resp = cmd.ExecuteNonQuery();
+            }
+
+            catch (MySqlException ex)
+            {
+                resp = 0;
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                resp = 0;
+                throw ex;
+            }
+            cmd = null;
+            cn.Close();
+            return resp;
         }
 
     }
