@@ -70,9 +70,11 @@ namespace AplicacionProductosServicios.Controlador
                 while (rd.Read())
                 {
                     q = new CuentaDB();
+                    q.getCuenta().Idper = Convert.ToInt32(rd[1]);
                     q.getCuenta().Nomper = rd[3].ToString();
                    //.getCuenta().Clave = rd[2].ToString();
                     q.getCuenta().Estper = rd[4].ToString();
+                  
 
                 }
                 rd.Close();

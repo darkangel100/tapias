@@ -45,7 +45,6 @@
             this.btncancelar.TabIndex = 13;
             this.btncancelar.Text = "&Cancelar";
             this.btncancelar.UseVisualStyleBackColor = true;
-            this.btncancelar.Click += new System.EventHandler(this.btncancelar_Click);
             // 
             // btbaceptar
             // 
@@ -66,7 +65,6 @@
             this.label2.Size = new System.Drawing.Size(43, 13);
             this.label2.TabIndex = 9;
             this.label2.Text = "Usuario";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
             // 
@@ -77,7 +75,6 @@
             this.label1.Size = new System.Drawing.Size(224, 13);
             this.label1.TabIndex = 8;
             this.label1.Text = "Ingrese la Clave para tener Acceso al Sistema";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // txtnobre
             // 
@@ -86,7 +83,7 @@
             this.txtnobre.Name = "txtnobre";
             this.txtnobre.Size = new System.Drawing.Size(148, 20);
             this.txtnobre.TabIndex = 14;
-            this.txtnobre.TextChanged += new System.EventHandler(this.txtnobre_TextChanged);
+            this.txtnobre.Text = "Cinthia Yanina";
             // 
             // txtclave
             // 
@@ -95,7 +92,7 @@
             this.txtclave.Name = "txtclave";
             this.txtclave.Size = new System.Drawing.Size(148, 20);
             this.txtclave.TabIndex = 16;
-            this.txtclave.TextChanged += new System.EventHandler(this.txtclave_TextChanged);
+            this.txtclave.Text = "12345";
             // 
             // label4
             // 
@@ -106,7 +103,6 @@
             this.label4.Size = new System.Drawing.Size(34, 13);
             this.label4.TabIndex = 15;
             this.label4.Text = "Clave";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // MscAcceso
             // 
@@ -122,7 +118,6 @@
             this.Controls.Add(this.label1);
             this.Name = "MscAcceso";
             this.Text = "MscAcceso";
-            this.Load += new System.EventHandler(this.MscAcceso_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

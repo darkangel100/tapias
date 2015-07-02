@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MscInternet));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnBuscar = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.dt2 = new System.Windows.Forms.DateTimePicker();
             this.dtp1 = new System.Windows.Forms.DateTimePicker();
@@ -44,9 +45,13 @@
             this.VALOR = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnguardar = new System.Windows.Forms.Button();
             this.btnregistar = new System.Windows.Forms.Button();
-            this.btnBuscar = new System.Windows.Forms.Button();
+            this.dtpingr = new System.Windows.Forms.DateTimePicker();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.lblsnombre = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblfacha = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dginternet)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -62,11 +67,22 @@
             this.groupBox2.TabIndex = 27;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos de busqueda";
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
+            this.btnBuscar.Location = new System.Drawing.Point(495, 13);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(29, 27);
+            this.btnBuscar.TabIndex = 59;
+            this.btnBuscar.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 26);
+            this.label4.Location = new System.Drawing.Point(6, 20);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(43, 13);
             this.label4.TabIndex = 15;
@@ -115,12 +131,13 @@
             // 
             // btnsalir
             // 
-            this.btnsalir.Location = new System.Drawing.Point(37, 296);
+            this.btnsalir.Location = new System.Drawing.Point(37, 295);
             this.btnsalir.Name = "btnsalir";
             this.btnsalir.Size = new System.Drawing.Size(109, 24);
             this.btnsalir.TabIndex = 24;
             this.btnsalir.Text = "Salir";
             this.btnsalir.UseVisualStyleBackColor = true;
+            this.btnsalir.Click += new System.EventHandler(this.btnsalir_Click);
             // 
             // btnmodificar
             // 
@@ -130,6 +147,7 @@
             this.btnmodificar.TabIndex = 23;
             this.btnmodificar.Text = "Modificar valor";
             this.btnmodificar.UseVisualStyleBackColor = true;
+            this.btnmodificar.Click += new System.EventHandler(this.btnmodificar_Click);
             // 
             // dginternet
             // 
@@ -145,6 +163,7 @@
             this.dginternet.ReadOnly = true;
             this.dginternet.Size = new System.Drawing.Size(246, 142);
             this.dginternet.TabIndex = 21;
+            this.dginternet.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dginternet_CellClick);
             // 
             // Column3
             // 
@@ -173,6 +192,7 @@
             this.btnguardar.TabIndex = 28;
             this.btnguardar.Text = "Guardar Datos";
             this.btnguardar.UseVisualStyleBackColor = true;
+            this.btnguardar.Click += new System.EventHandler(this.btnguardar_Click);
             // 
             // btnregistar
             // 
@@ -184,22 +204,44 @@
             this.btnregistar.UseVisualStyleBackColor = true;
             this.btnregistar.Click += new System.EventHandler(this.btnregistar_Click);
             // 
-            // btnBuscar
+            // dtpingr
             // 
-            this.btnBuscar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
-            this.btnBuscar.Location = new System.Drawing.Point(495, 13);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(29, 27);
-            this.btnBuscar.TabIndex = 59;
-            this.btnBuscar.UseVisualStyleBackColor = true;
-           
+            this.dtpingr.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpingr.Location = new System.Drawing.Point(561, 366);
+            this.dtpingr.Name = "dtpingr";
+            this.dtpingr.Size = new System.Drawing.Size(13, 20);
+            this.dtpingr.TabIndex = 60;
+            this.dtpingr.Value = new System.DateTime(2015, 7, 2, 0, 0, 0, 0);
+            this.dtpingr.Visible = false;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lblsnombre,
+            this.lblfacha});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 363);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(570, 22);
+            this.statusStrip1.TabIndex = 61;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // lblsnombre
+            // 
+            this.lblsnombre.Name = "lblsnombre";
+            this.lblsnombre.Size = new System.Drawing.Size(0, 17);
+            // 
+            // lblfacha
+            // 
+            this.lblfacha.Name = "lblfacha";
+            this.lblfacha.Size = new System.Drawing.Size(0, 17);
             // 
             // MscInternet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(570, 385);
+            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.dtpingr);
             this.Controls.Add(this.btnregistar);
             this.Controls.Add(this.btnguardar);
             this.Controls.Add(this.groupBox2);
@@ -210,9 +252,12 @@
             this.Controls.Add(this.dginternet);
             this.Name = "MscInternet";
             this.Text = "MscInternet";
+            this.Load += new System.EventHandler(this.MscInternet_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dginternet)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -236,5 +281,9 @@
         private System.Windows.Forms.Button btnguardar;
         private System.Windows.Forms.Button btnregistar;
         private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.DateTimePicker dtpingr;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel lblsnombre;
+        private System.Windows.Forms.ToolStripStatusLabel lblfacha;
     }
 }
