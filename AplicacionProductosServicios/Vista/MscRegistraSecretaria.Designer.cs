@@ -136,6 +136,7 @@
             this.dgSecretaria.ReadOnly = true;
             this.dgSecretaria.Size = new System.Drawing.Size(543, 152);
             this.dgSecretaria.TabIndex = 53;
+            this.dgSecretaria.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgSecretaria_CellClick_1);
             // 
             // id_per
             // 
@@ -432,7 +433,6 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MscRegistraSecretaria";
-            this.Text = "MscRegistraSecretaria";
             this.Load += new System.EventHandler(this.MscRegistraSecretaria_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgSecretaria)).EndInit();
             this.groupBox1.ResumeLayout(false);

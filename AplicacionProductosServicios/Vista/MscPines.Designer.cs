@@ -37,13 +37,13 @@
             this.btnmodifpines = new System.Windows.Forms.Button();
             this.btnsalirPines = new System.Windows.Forms.Button();
             this.btnregistarpines = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dtgPines = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgPines)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -117,6 +117,7 @@
             this.btnmodifpines.TabIndex = 27;
             this.btnmodifpines.Text = "Modificar";
             this.btnmodifpines.UseVisualStyleBackColor = true;
+            this.btnmodifpines.Click += new System.EventHandler(this.btnmodifpines_Click);
             // 
             // btnsalirPines
             // 
@@ -140,20 +141,21 @@
             this.btnregistarpines.UseVisualStyleBackColor = true;
             this.btnregistarpines.Click += new System.EventHandler(this.btnregistarpines_Click);
             // 
-            // dataGridView1
+            // dtgPines
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dtgPines.AllowUserToAddRows = false;
+            this.dtgPines.AllowUserToDeleteRows = false;
+            this.dtgPines.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgPines.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Fecha,
             this.Column2});
-            this.dataGridView1.Location = new System.Drawing.Point(40, 228);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(347, 197);
-            this.dataGridView1.TabIndex = 25;
+            this.dtgPines.Location = new System.Drawing.Point(40, 228);
+            this.dtgPines.Name = "dtgPines";
+            this.dtgPines.ReadOnly = true;
+            this.dtgPines.Size = new System.Drawing.Size(347, 197);
+            this.dtgPines.TabIndex = 25;
+            this.dtgPines.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgPines_CellClick);
             // 
             // Column1
             // 
@@ -191,7 +193,7 @@
             this.Controls.Add(this.btnmodifpines);
             this.Controls.Add(this.btnsalirPines);
             this.Controls.Add(this.btnregistarpines);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dtgPines);
             this.Controls.Add(this.dateTimePicker1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -200,7 +202,7 @@
             this.Load += new System.EventHandler(this.MscPines_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgPines)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -217,7 +219,7 @@
         private System.Windows.Forms.Button btnmodifpines;
         private System.Windows.Forms.Button btnsalirPines;
         private System.Windows.Forms.Button btnregistarpines;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dtgPines;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;

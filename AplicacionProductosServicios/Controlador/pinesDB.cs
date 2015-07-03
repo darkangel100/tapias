@@ -20,10 +20,10 @@ namespace AplicacionProductosServicios.Controlador
             }
             return this.pin;
         }
-        public Pines setPines(Pines pins)
+        public void setPines(Pines pins)
         {
             pin = pins;
-            return pins;
+           // return pins;
         }
         public int InsertePines(Pines pin)
         {
@@ -47,8 +47,7 @@ namespace AplicacionProductosServicios.Controlador
             {
                 resp = 0;
                 throw ex;
-            }
-            pin = null;
+            }           
             cmd = null;
             cn.Close();
             return resp;
@@ -73,10 +72,11 @@ namespace AplicacionProductosServicios.Controlador
                     pi = new pinesDB();
                     pi.getPines().Idpines = Convert.ToInt32(dr[0].ToString());
                     pi.getPines().Idper = Convert.ToInt32(dr[1].ToString());
-                    pi.getPines().Fecha = dr[2].ToString();
+                    pi.getPines().Fecha = Convert.ToDateTime(dr[2].ToString());
                     pi.getPines().Canpines = Convert.ToInt32(dr[3].ToString());
                     lisPines.Add(pi.getPines());
                 }
+                dr.Close();
             }
             catch (MySqlException ex)
             {
@@ -92,7 +92,7 @@ namespace AplicacionProductosServicios.Controlador
             cn.Close();
             return lisPines;
         }
-        public Pines TraePin(Pines id)
+        public Pines TraePin(int id)
         {
             pinesDB pin = null;
             MySqlCommand cmd;
@@ -110,9 +110,10 @@ namespace AplicacionProductosServicios.Controlador
                     pin = new pinesDB();
                     pin.getPines().Idpines = Convert.ToInt32(dr[0].ToString());
                     pin.getPines().Idper = Convert.ToInt32(dr[1].ToString());
-                    pin.getPines().Fecha = dr[2].ToString();
+                    pin.getPines().Fecha = Convert.ToDateTime(dr[2].ToString());
                     pin.getPines().Canpines = Convert.ToInt32(dr[3].ToString());
                 }
+                dr.Close();
             }
             catch (MySqlException ex)
             {
@@ -127,8 +128,33 @@ namespace AplicacionProductosServicios.Controlador
             cmd = null;
             cn.Close();
             return pin.getPines();
-
         }
-       
+        public int ActualizaPines(Pines id)
+        {
+            MySqlCommand cmd;
+            MySqlConnection cn = con.getconection();
+            int resp;
+            try
+            {
+                string sqlpines = "Update pines set id_per=" + id.Idper + ",fecha='" + id.Fecha + "',can_pines=" + id.Canpines + " Where id_pines=" + id.Idpines + "";
+                cmd = new MySqlCommand(sqlpines, cn);
+                cmd.CommandType = CommandType.Text;
+                cn.Open();
+                resp = cmd.ExecuteNonQuery();
+            }
+            catch (MySqlException ex)
+            {
+                resp = 0;
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                resp = 0;
+                throw ex;
+            }
+            cmd = null;
+            cn.Close();
+            return resp;
+        }
     }
 }

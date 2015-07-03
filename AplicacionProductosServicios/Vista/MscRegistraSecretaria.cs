@@ -324,6 +324,11 @@ namespace AplicacionProductosServicios.Vista
             Modificar();
             groupBox1.Enabled = true;
         }
+
+        private void dgSecretaria_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            fila = dgSecretaria.CurrentRow.Index;
+        }
     }
 }
 

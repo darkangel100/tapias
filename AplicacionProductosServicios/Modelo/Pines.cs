@@ -21,9 +21,9 @@ namespace AplicacionProductosServicios.Modelo
             get { return id_per; }
             set { id_per = value; }
         }
-        private string fecha;
+        private DateTime fecha;
 
-        public string Fecha
+        public DateTime Fecha
         {
             get { return fecha; }
             set { fecha = value; }

@@ -17,7 +17,7 @@ namespace AplicacionProductosServicios.Controlador
             if (this.per == null)
             {
                 this.per = new Usuario();
-                              
+
             }
             return this.per;
         }
@@ -67,9 +67,6 @@ namespace AplicacionProductosServicios.Controlador
             return num;
         }
 
-
-
-
         public int InsertaUsuario(Usuario per)
         {
             MySqlCommand cmd;
@@ -116,14 +113,14 @@ namespace AplicacionProductosServicios.Controlador
                 while (mdr.Read())
                 {
                     persona = new UsuarioDB();
-                    persona.getUsuario().Idper = Convert.ToInt32(mdr["id_per"]);
+                    persona.getUsuario().Idper = Convert.ToInt32(mdr[0]);
                     persona.getUsuario().Cedper = mdr[1].ToString();
                     persona.getUsuario().Apeper = mdr[3].ToString();
                     persona.getUsuario().Nomper = mdr[2].ToString();
                     persona.getUsuario().Dirper = mdr[4].ToString();
                     persona.getUsuario().Telper = mdr[5].ToString();
                     //persona.getUsuario().Estper = mdr["est_per"].ToString();
-                   // persona.getUsuario().Idrol = Convert.ToInt32(mdr[7]);
+                    // persona.getUsuario().Idrol = Convert.ToInt32(mdr[7]);
 
                     listper.Add(persona.getUsuario());
                 }
