@@ -127,55 +127,97 @@ namespace AplicacionProductosServicios.Controlador
             return resp;
 
         }
-        public List<Producto> Traeproductos(string codcat)
+        public List<Usuario> Buscarusuario(string ced)
         {
-            ProductoDB pro = null;
-            List<Producto> productos = new List<Producto>();
+            UsuarioDB usu = null;
+            List<Usuario> BuscaUsuario = new List<Usuario>();
             MySqlCommand cmd;
             MySqlConnection cn = con.getconection();
-              try
+
+            try
             {
-                string sqlcad = "Select * from producto where cod_cat='"+codcat+"'";
-                cmd = new MySqlCommand(sqlcad, cn);
+                string sqlsecretaria = "Select * from persona WHERE ce_per='" + ced + "' AND est_per='A'";
+                cmd = new MySqlCommand(sqlsecretaria, cn);
                 cmd.CommandType = CommandType.Text;
                 cn.Open();
                 MySqlDataReader dr = cmd.ExecuteReader();
+
                 while (dr.Read())
                 {
-                    pro = new ProductoDB();
-                    pro.getProductos().codpro = dr["cod_pro"].ToString();
-                    pro.getProductos().codcat=dr["cod_cat"].ToString();
-                    pro.getProductos().nompro = dr["nom_pro"].ToString();
-                    pro.getProductos().precom=Convert.ToDouble(dr["pre_com"]);
-                    pro.getProductos().canpro = Convert.ToInt32(dr["can_pro"]);
-                    pro.getProductos().porgan = Convert.ToDouble(dr["pro_gan"]);
-                    pro.getProductos().pregan = Convert.ToDouble(dr["pre_gan"]);
-                    pro.getProductos().iva = dr["iva_sn"].ToString();
-
-
-
-                    productos.Add(pro.getProductos());
-
+                    usu = new UsuarioDB();
+                    usu.getUsuario().Idper = Convert.ToInt32(dr[0]);
+                    usu.getUsuario().Cedper = dr[1].ToString();
+                    usu.getUsuario().Apeper = dr[2].ToString();
+                    usu.getUsuario().Nomper = dr[3].ToString();
+                    usu.getUsuario().Dirper = dr[4].ToString();
+                    usu.getUsuario().Telper = dr[5].ToString();
+                    usu.getUsuario().Estper = dr[6].ToString();
+                    usu.getUsuario().Idrol = Convert.ToInt32(dr[7]);
+                    BuscaUsuario.Add(usu.getUsuario());
                 }
                 dr.Close();
             }
-              catch (MySqlException ex)
-              {
-                  pro = null;
-                  throw ex;
-
-              }
-              catch (Exception ex)
-              {
-                  pro = null;
-                  throw ex;
-              }
-              cn.Close();
-              cmd = null;
-              return productos;
+            catch (MySqlException ex)
+            {
+                usu = null;
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                usu = null;
+                throw ex;
+            }
+            cmd = null;
+            cn.Close();
+            return BuscaUsuario;
         }
 
-        public Producto
+        public List<Usuario> BuscarPorApellido(string ape)
+        {
+            UsuarioDB usu = null;
+            List<Usuario> BuscaUsuario = new List<Usuario>();
+            MySqlCommand cmd;
+            MySqlConnection cn = con.getconection();
+
+            try
+            {
+                string sqlsecretaria = "Select * from persona WHERE ape_per LIKE '%" + ape + "%' and est_per='A'";
+                cmd = new MySqlCommand(sqlsecretaria, cn);
+                cmd.CommandType = CommandType.Text;
+                cn.Open();
+                MySqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    usu = new UsuarioDB();
+                    usu.getUsuario().Idper = Convert.ToInt32(dr[0]);
+                    usu.getUsuario().Cedper = dr[1].ToString();
+                    usu.getUsuario().Apeper = dr[2].ToString();
+                    usu.getUsuario().Nomper = dr[3].ToString();
+                    usu.getUsuario().Dirper = dr[4].ToString();
+                    usu.getUsuario().Telper = dr[5].ToString();
+                    usu.getUsuario().Estper = dr[6].ToString();
+                    usu.getUsuario().Idrol = Convert.ToInt32(dr[7]);
+                    BuscaUsuario.Add(usu.getUsuario());
+                }
+                dr.Close();
+            }
+            catch (MySqlException ex)
+            {
+                usu = null;
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                usu = null;
+                throw ex;
+            }
+            cmd = null;
+            cn.Close();
+            return BuscaUsuario;
+        }
+        
     }
+        
 
 }

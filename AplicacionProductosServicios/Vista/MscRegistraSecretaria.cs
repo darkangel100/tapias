@@ -32,6 +32,7 @@ namespace AplicacionProductosServicios.Vista
             groupBox1.Enabled = true;
             txtcedSecret.Focus();
             estado = "G";
+            rdbactivo.Checked = true;
         }
 
         private void genId()
@@ -156,6 +157,7 @@ namespace AplicacionProductosServicios.Vista
             llenarPersona("A");
             cargarol("A");
             genId();
+            cborol.Text = "Seleccione el rol";
         }
 
         private void btnguardar_Secret_Click(object sender, EventArgs e)
@@ -169,72 +171,23 @@ namespace AplicacionProductosServicios.Vista
                 CambiarDatos();
             }
         }
+        private void validarLetras(KeyPressEventArgs e)
+        {
+            char letra = e.KeyChar;
+            if ((letra < 'a' || letra > 'z') & (letra < 'A' || letra > 'Z') & letra != 8 & letra != 13 & letra != 32)
+            {
+                e.Handled = true;
+            }
+        }
 
-        private void txtcedSecret_KeyPress(object sender, KeyPressEventArgs e)
+        private void ValidarNumeros(KeyPressEventArgs e)
         {
             char letra = e.KeyChar;
             if ((letra < 48 || letra > 57) & letra != 8 & letra != 13)
             {
                 e.Handled = true;
             }
-            if (letra == 13)
-            {
-                txtapeSecret.Focus();
-            }
         }
-        //Validacion para el ingreso de datos
-        private void txtnomSecret_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char letra = e.KeyChar;
-            if ((letra < 'a' || letra > 'z') & (letra < 'A' || letra > 'Z') & letra != 8 & letra != 13 & letra != 32)
-            {
-                e.Handled = true;
-            }
-            if (letra == 13)
-            {
-                txtnomsecret.Focus();
-            }
-        }
-
-        private void txtnomsecret_KeyPress_1(object sender, KeyPressEventArgs e)
-        {
-            char letra = e.KeyChar;
-            if ((letra < 'a' || letra > 'z') & (letra < 'A' || letra > 'Z') & letra != 8 & letra != 13 & letra != 32)
-            {
-                e.Handled = true;
-            }
-            if (letra == 13)
-            {
-                txtdirecSecret.Focus();
-            }
-        }
-
-        private void txtdirecSecret_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char letra = e.KeyChar;
-            if ((letra < 'a' || letra > 'z') & (letra < 'A' || letra > 'Z') & letra != 8 & letra != 13 & letra != 32)
-            {
-                e.Handled = true;
-            }
-            if (letra == 13)
-            {
-                txttelSecret.Focus();
-            }
-        }
-
-        private void txttelSecret_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char letra = e.KeyChar;
-            if ((letra < 48 || letra > 57) & letra != 8 & letra != 13)
-            {
-                e.Handled = true;
-            }
-            if (letra == 13)
-            {
-                groupBox2.Focus();
-            }
-        }
-
         public void LimpiarCampos()
         {
             txtcedSecret.Text = null;
@@ -246,6 +199,7 @@ namespace AplicacionProductosServicios.Vista
             rdbactivo.Checked = true;
             btnregistrar_secret.Focus();
             groupBox1.Enabled = false;
+            cborol.Text = null;
         }
         private CuentaDB llenacamcuen(CuentaDB cuen)
         {
@@ -262,7 +216,12 @@ namespace AplicacionProductosServicios.Vista
         private void Modificar()
         {
             UsuarioDB objSecre = new UsuarioDB();
-            CuentaDB objC = new CuentaDB();
+            /*txtcedSecret.Text = dgSecretaria.Rows[fila].Cells[1].Value.ToString();
+            txtapeSecret.Text = dgSecretaria.Rows[fila].Cells[2].Value.ToString();
+            txtnomsecret.Text = dgSecretaria.Rows[fila].Cells[3].Value.ToString();
+            txtdirecSecret.Text = dgSecretaria.Rows[fila].Cells[4].Value.ToString();
+            txttelSecret.Text = dgSecretaria.Rows[fila].Cells[5].Value.ToString();*/
+
             objSecre.setUsuario(objSecre.Traepersona(dgSecretaria.Rows[fila].Cells[1].Value.ToString()));
             if (objSecre.getUsuario().Cedper == "")
             {
@@ -276,13 +235,18 @@ namespace AplicacionProductosServicios.Vista
                 txtnomsecret.Text = objSecre.getUsuario().Apeper;
                 txtdirecSecret.Text = objSecre.getUsuario().Dirper;
                 txttelSecret.Text = objSecre.getUsuario().Telper;
-                txtclave.Text = objC.getCuenta().Clave;
+                //txtclave.Text = objC.getCuenta().Clave;
                 if (objSecre.getUsuario().Estper.Equals("A"))
                     rdbactivo.Checked = true;
                 else
                     rdbdesactivo.Checked = true;
                 estado = "E";
-
+                if (objSecre.getUsuario().Idrol.Equals(1))
+                    cborol.Text = "Propietario";
+                else if (objSecre.getUsuario().Idrol.Equals(2))
+                    cborol.Text = "Secretaria1";
+                else
+                    cborol.Text = "Secretaria2";
             }
         }
         private void CambiarDatos()
@@ -301,8 +265,9 @@ namespace AplicacionProductosServicios.Vista
                 else
                 {
                     MessageBox.Show("Usuario Modificado exitosamente", "Productos y Servicios", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                   llenarPersona("A");
+                    llenarPersona("A");
                     estado = "";
+                    LimpiarCampos();
                 }
             }
             catch (Exception ex)
@@ -311,22 +276,89 @@ namespace AplicacionProductosServicios.Vista
             }
 
         }
-
-        private void dgSecretaria_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            fila = dgSecretaria.CurrentRow.Index;
-
-        }
-
         private void btnmodificarSecre_Click_1(object sender, EventArgs e)
         {
             Modificar();
             groupBox1.Enabled = true;
         }
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            BuscaPer();
+        }
 
         private void dgSecretaria_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
             fila = dgSecretaria.CurrentRow.Index;
+        }
+        private void BuscaPer()
+        {
+            try
+            {
+                UsuarioDB objU = new UsuarioDB();
+                dgSecretaria.Rows.Clear();
+                if (cboOpcionBus.SelectedIndex == 0)
+                {
+                    objU.getUsuario().ListaPersonas = objU.Buscarusuario(txtbusSecret.Text);
+                    if (objU.getUsuario().ListaPersonas.Count == 0)
+                    {
+                        MessageBox.Show("No existe el Usuario");
+                    }
+                    else
+                    {
+                        dgSecretaria.Rows.Add(1);
+                        dgSecretaria.DataSource = objU.getUsuario().ListaPersonas;
+                        dgSecretaria.Rows[fila].Cells[1].Value = objU.getUsuario().ListaPersonas[fila].Cedper;
+                        dgSecretaria.Rows[fila].Cells[2].Value = objU.getUsuario().ListaPersonas[fila].Apeper;
+                        dgSecretaria.Rows[fila].Cells[3].Value = objU.getUsuario().ListaPersonas[fila].Nomper;
+                        dgSecretaria.Rows[fila].Cells[4].Value = objU.getUsuario().ListaPersonas[fila].Dirper;
+                        dgSecretaria.Rows[fila].Cells[5].Value = objU.getUsuario().ListaPersonas[fila].Telper;
+                    }
+
+                }
+                else if (cboOpcionBus.SelectedIndex > 0)
+                {
+                    objU.getUsuario().ListaPersonas = objU.BuscarPorApellido(txtbusSecret.Text);
+                    if (objU.getUsuario().ListaPersonas.Count == 0)
+                    {
+                        MessageBox.Show("No existe el Usuario");
+                    }
+                    else
+                    {
+                        dgSecretaria.Rows.Add(1);
+                        dgSecretaria.DataSource = objU.getUsuario().ListaPersonas;
+                        dgSecretaria.Rows[fila].Cells[1].Value = objU.getUsuario().ListaPersonas[fila].Cedper;
+                        dgSecretaria.Rows[fila].Cells[2].Value = objU.getUsuario().ListaPersonas[fila].Apeper;
+                        dgSecretaria.Rows[fila].Cells[3].Value = objU.getUsuario().ListaPersonas[fila].Nomper;
+                        dgSecretaria.Rows[fila].Cells[4].Value = objU.getUsuario().ListaPersonas[fila].Dirper;
+                        dgSecretaria.Rows[fila].Cells[5].Value = objU.getUsuario().ListaPersonas[fila].Telper;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al presentar datos," + ex.Message, "Productos y Serrvicios", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void txtcedSecret_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidarNumeros(e);
+        }
+
+        private void txtapeSecret_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validarLetras(e);
+        }
+
+        private void txtnomsecret_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validarLetras(e);
+        }
+
+        private void txttelSecret_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidarNumeros(e);
         }
     }
 }

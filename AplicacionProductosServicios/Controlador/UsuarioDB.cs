@@ -210,6 +210,94 @@ namespace AplicacionProductosServicios.Controlador
             cn.Close();
             return resp;
         }
+        public List<Usuario> Buscarusuario(string ced)
+        {
+            UsuarioDB usu = null;
+            List<Usuario> BuscaUsuario = new List<Usuario>();
+            MySqlCommand cmd;
+            MySqlConnection cn = con.getconection();
+
+            try
+            {
+                string sqlsecretaria = "Select * from persona WHERE ce_per='" + ced + "' AND est_per='A'";
+                cmd = new MySqlCommand(sqlsecretaria, cn);
+                cmd.CommandType = CommandType.Text;
+                cn.Open();
+                MySqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    usu = new UsuarioDB();
+                    usu.getUsuario().Idper = Convert.ToInt32(dr[0]);
+                    usu.getUsuario().Cedper = dr[1].ToString();
+                    usu.getUsuario().Apeper = dr[2].ToString();
+                    usu.getUsuario().Nomper = dr[3].ToString();
+                    usu.getUsuario().Dirper = dr[4].ToString();
+                    usu.getUsuario().Telper = dr[5].ToString();
+                    usu.getUsuario().Estper = dr[6].ToString();
+                    usu.getUsuario().Idrol = Convert.ToInt32(dr[7]);
+                    BuscaUsuario.Add(usu.getUsuario());
+                }
+                dr.Close();
+            }
+            catch (MySqlException ex)
+            {
+                usu = null;
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                usu = null;
+                throw ex;
+            }
+            cmd = null;
+            cn.Close();
+            return BuscaUsuario;
+        }
+        public List<Usuario> BuscarPorApellido(string ape)
+        {
+            UsuarioDB usu = null;
+            List<Usuario> BuscaUsuario = new List<Usuario>();
+            MySqlCommand cmd;
+            MySqlConnection cn = con.getconection();
+
+            try
+            {
+                string sqlsecretaria = "Select * from persona WHERE ape_per LIKE '%" + ape + "%' and est_per='A'";
+                cmd = new MySqlCommand(sqlsecretaria, cn);
+                cmd.CommandType = CommandType.Text;
+                cn.Open();
+                MySqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    usu = new UsuarioDB();
+                    usu.getUsuario().Idper = Convert.ToInt32(dr[0]);
+                    usu.getUsuario().Cedper = dr[1].ToString();
+                    usu.getUsuario().Apeper = dr[2].ToString();
+                    usu.getUsuario().Nomper = dr[3].ToString();
+                    usu.getUsuario().Dirper = dr[4].ToString();
+                    usu.getUsuario().Telper = dr[5].ToString();
+                    usu.getUsuario().Estper = dr[6].ToString();
+                    usu.getUsuario().Idrol = Convert.ToInt32(dr[7]);
+                    BuscaUsuario.Add(usu.getUsuario());
+                }
+                dr.Close();
+            }
+            catch (MySqlException ex)
+            {
+                usu = null;
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                usu = null;
+                throw ex;
+            }
+            cmd = null;
+            cn.Close();
+            return BuscaUsuario;
+        }
 
     }
 }

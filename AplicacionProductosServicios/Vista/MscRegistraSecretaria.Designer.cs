@@ -78,6 +78,7 @@
             this.btnBuscar.Size = new System.Drawing.Size(29, 27);
             this.btnBuscar.TabIndex = 58;
             this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // txtbusSecret
             // 
@@ -252,6 +253,7 @@
             this.cborol.Name = "cborol";
             this.cborol.Size = new System.Drawing.Size(240, 25);
             this.cborol.TabIndex = 30;
+            //this.cborol.SelectedIndexChanged += new System.EventHandler(this.cborol_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -347,7 +349,6 @@
             this.txtdirecSecret.Name = "txtdirecSecret";
             this.txtdirecSecret.Size = new System.Drawing.Size(240, 25);
             this.txtdirecSecret.TabIndex = 18;
-            this.txtdirecSecret.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtdirecSecret_KeyPress);
             // 
             // btnguardar_Secret
             // 
@@ -366,7 +367,7 @@
             this.txtnomsecret.Name = "txtnomsecret";
             this.txtnomsecret.Size = new System.Drawing.Size(240, 25);
             this.txtnomsecret.TabIndex = 16;
-            this.txtnomsecret.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtnomsecret_KeyPress_1);
+            this.txtnomsecret.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtnomsecret_KeyPress);
             // 
             // txtapeSecret
             // 
@@ -374,7 +375,7 @@
             this.txtapeSecret.Name = "txtapeSecret";
             this.txtapeSecret.Size = new System.Drawing.Size(240, 25);
             this.txtapeSecret.TabIndex = 15;
-            this.txtapeSecret.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtnomSecret_KeyPress);
+            this.txtapeSecret.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtapeSecret_KeyPress);
             // 
             // label5
             // 
