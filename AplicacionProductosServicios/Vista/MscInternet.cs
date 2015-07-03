@@ -26,6 +26,7 @@ namespace AplicacionProductosServicios.Vista
             txtconsumointernet.Enabled = true;
             btnguardar.Enabled = true;
             txtconsumointernet.Focus();
+            estado = "n";
 
         }
 
@@ -36,11 +37,7 @@ namespace AplicacionProductosServicios.Vista
             {
                 int res = 0;
                 InternetDB obji = new InternetDB();
-                int num;
-                num = obji.TraeCodigo();
-                obji.getInternet().Idinter = Util.generarid(num);
                 obji.getInternet().Valor = Convert.ToDouble(txtconsumointernet.Text.Trim());
-                obji.getInternet().Fecha = Util.girafecha(dtpingr.Value.ToShortDateString());
                 obji.getInternet().Idper = Sesiones.C.Idper;
                 res = obji.InsertaInter(obji.getInternet());
 
@@ -118,8 +115,7 @@ namespace AplicacionProductosServicios.Vista
             listaprofecha();
             lblsnombre.Text ="Usuario  "+ Sesiones.C.Nomper+"  ";
             lblfacha.Text = Util.girafecha(dtpingr.Value.ToShortDateString());
-            estado = "n";
-                    
+                             
             
             
         }

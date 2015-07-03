@@ -13,7 +13,7 @@ namespace AplicacionProductosServicios.Controlador
         conexion cn = new conexion();
         internet inter = null;
 
-        public internet getInternet()
+        public internet getInternet() // metodo de nombre getinternet de tipo interternet donde retorna un dato del mismo tipo
         {
             if (this.inter == null)
             {
@@ -22,59 +22,22 @@ namespace AplicacionProductosServicios.Controlador
 
             return this.inter;
         }
-        public void setInternet(internet inte)
+        public void setInternet(internet inte)// metdod que recibe un paramerto de tipo internet y no retorna nada 
         {
             inter = inte;
         }
 
 
-        public int TraeCodigo()
-        {
-            int nro = 0;
-            MySqlConnection con = cn.getconection();
-            MySqlCommand cmd;
-            try
-            {
-                string sqlpro = "Select max(id_inter) as nro from internet ";
-                cmd = new MySqlCommand(sqlpro, con);
-                con.Open();
-                MySqlDataReader dr = cmd.ExecuteReader();
-                while (dr.Read())
-                {
-                    if (DBNull.Value == dr["nro"])
-                        nro = 0;
-                    else
-                        nro = Convert.ToInt32(dr["nro"]);
-
-
-                }
-                dr.Close();
-
-            }
-            catch (MySqlException ex)
-            {
-                nro = 0;
-                throw ex;
-            }
-            catch (Exception ex)
-            {
-                nro = 0;
-                throw ex;
-            }
-            con.Close();
-            cmd = null;
-            return nro;
-
-        }
-
-        public int InsertaInter(internet inte)
+        public int InsertaInter(internet inte)// metodo de tipo de dato int donde recibe un parametro de tipo internet y retorna un dato de tipo int y sirve para insertar ala tabla internet los valores de valor y el id de persona
         {
             MySqlCommand cmd;
             MySqlConnection con = cn.getconection();
             int resp;
             try
             {
-                string sqlinter = "Insert internet values(" + inte.Idinter + "," + inte.Idper + ",'" + inte.Fecha + "'," + inte.Valor + ")";
+
+            
+                string sqlinter = "Insert internet (id_per,valor) Values(" + inte.Idper + "," + inte.Valor + ")";
                 cmd = new MySqlCommand(sqlinter, con);
                 con.Open();
                 resp = cmd.ExecuteNonQuery();
@@ -142,7 +105,7 @@ namespace AplicacionProductosServicios.Controlador
 
 
 
-        public int modificaValor(int id ,double val)
+        public int modificaValor(int id ,double val) // metoso 
         {
             MySqlCommand cmd;
             MySqlConnection con = cn.getconection();

@@ -37,7 +37,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtconsumointernet = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnsalir = new System.Windows.Forms.Button();
             this.btnmodificar = new System.Windows.Forms.Button();
             this.dginternet = new System.Windows.Forms.DataGridView();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,10 +44,11 @@
             this.VALOR = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnguardar = new System.Windows.Forms.Button();
             this.btnregistar = new System.Windows.Forms.Button();
-            this.dtpingr = new System.Windows.Forms.DateTimePicker();
+            this.btnsalir = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblsnombre = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblfacha = new System.Windows.Forms.ToolStripStatusLabel();
+            this.dtpingr = new System.Windows.Forms.DateTimePicker();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dginternet)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -61,13 +61,12 @@
             this.groupBox2.Controls.Add(this.dt2);
             this.groupBox2.Controls.Add(this.dtp1);
             this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Location = new System.Drawing.Point(3, 11);
+            this.groupBox2.Location = new System.Drawing.Point(12, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(545, 53);
             this.groupBox2.TabIndex = 27;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos de busqueda";
-            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // btnBuscar
             // 
@@ -128,16 +127,6 @@
             this.label2.Size = new System.Drawing.Size(92, 13);
             this.label2.TabIndex = 25;
             this.label2.Text = "Ingresar Consumo\r\n";
-            // 
-            // btnsalir
-            // 
-            this.btnsalir.Location = new System.Drawing.Point(37, 295);
-            this.btnsalir.Name = "btnsalir";
-            this.btnsalir.Size = new System.Drawing.Size(109, 24);
-            this.btnsalir.TabIndex = 24;
-            this.btnsalir.Text = "Salir";
-            this.btnsalir.UseVisualStyleBackColor = true;
-            this.btnsalir.Click += new System.EventHandler(this.btnsalir_Click);
             // 
             // btnmodificar
             // 
@@ -204,25 +193,25 @@
             this.btnregistar.UseVisualStyleBackColor = true;
             this.btnregistar.Click += new System.EventHandler(this.btnregistar_Click);
             // 
-            // dtpingr
+            // btnsalir
             // 
-            this.dtpingr.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpingr.Location = new System.Drawing.Point(561, 366);
-            this.dtpingr.Name = "dtpingr";
-            this.dtpingr.Size = new System.Drawing.Size(13, 20);
-            this.dtpingr.TabIndex = 60;
-            this.dtpingr.Value = new System.DateTime(2015, 7, 2, 0, 0, 0, 0);
-            this.dtpingr.Visible = false;
+            this.btnsalir.Location = new System.Drawing.Point(37, 294);
+            this.btnsalir.Name = "btnsalir";
+            this.btnsalir.Size = new System.Drawing.Size(109, 24);
+            this.btnsalir.TabIndex = 24;
+            this.btnsalir.Text = "Salir";
+            this.btnsalir.UseVisualStyleBackColor = true;
+            this.btnsalir.Click += new System.EventHandler(this.btnsalir_Click);
             // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblsnombre,
             this.lblfacha});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 363);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 367);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(570, 22);
-            this.statusStrip1.TabIndex = 61;
+            this.statusStrip1.Size = new System.Drawing.Size(526, 22);
+            this.statusStrip1.TabIndex = 66;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // lblsnombre
@@ -235,13 +224,21 @@
             this.lblfacha.Name = "lblfacha";
             this.lblfacha.Size = new System.Drawing.Size(0, 17);
             // 
+            // dtpingr
+            // 
+            this.dtpingr.Location = new System.Drawing.Point(11, 298);
+            this.dtpingr.Name = "dtpingr";
+            this.dtpingr.Size = new System.Drawing.Size(20, 20);
+            this.dtpingr.TabIndex = 67;
+            this.dtpingr.Visible = false;
+            // 
             // MscInternet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(570, 385);
-            this.Controls.Add(this.statusStrip1);
+            this.ClientSize = new System.Drawing.Size(526, 389);
             this.Controls.Add(this.dtpingr);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.btnregistar);
             this.Controls.Add(this.btnguardar);
             this.Controls.Add(this.groupBox2);
@@ -272,7 +269,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtconsumointernet;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnsalir;
         private System.Windows.Forms.Button btnmodificar;
         private System.Windows.Forms.DataGridView dginternet;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
@@ -281,9 +277,10 @@
         private System.Windows.Forms.Button btnguardar;
         private System.Windows.Forms.Button btnregistar;
         private System.Windows.Forms.Button btnBuscar;
-        private System.Windows.Forms.DateTimePicker dtpingr;
+        private System.Windows.Forms.Button btnsalir;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel lblsnombre;
         private System.Windows.Forms.ToolStripStatusLabel lblfacha;
+        private System.Windows.Forms.DateTimePicker dtpingr;
     }
 }

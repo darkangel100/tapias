@@ -55,10 +55,12 @@
     <Compile Include="Controlador\InternetDB.cs" />
     <Compile Include="Controlador\pinesDB.cs" />
     <Compile Include="Controlador\ProductoDB.cs" />
+    <Compile Include="Controlador\ProVentaDB.cs" />
     <Compile Include="Controlador\rolDB.cs" />
     <Compile Include="Controlador\Sesiones.cs" />
     <Compile Include="Controlador\UsuarioDB.cs" />
     <Compile Include="Controlador\Util.cs" />
+    <Compile Include="Controlador\VentaDB.cs" />
     <Compile Include="Modelo\compra.cs" />
     <Compile Include="Modelo\cuenta.cs" />
     <Compile Include="Modelo\internet.cs" />

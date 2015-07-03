@@ -20,8 +20,7 @@ namespace AplicacionProductosServicios.Vista
         //DEclaracion de variables a utilizar..
         string estado = "";
         int fila = 0;
-        int num = 0;
-        string tipo;
+        
 
         private void btnsalir_Secret_Click(object sender, EventArgs e)
         {
