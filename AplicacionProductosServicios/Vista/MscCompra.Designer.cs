@@ -46,11 +46,13 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnguardarComp = new System.Windows.Forms.Button();
-            this.txtdetalleComp = new System.Windows.Forms.TextBox();
+            this.txtcod = new System.Windows.Forms.TextBox();
             this.txtvalorComp = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtcantidadComp = new System.Windows.Forms.TextBox();
+            this.cboprod = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgcompra)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -63,7 +65,7 @@
             this.groupBox2.Controls.Add(this.dateTimePicker2);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.btnbuscarComp);
-            this.groupBox2.Location = new System.Drawing.Point(12, 12);
+            this.groupBox2.Location = new System.Drawing.Point(224, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(422, 46);
             this.groupBox2.TabIndex = 26;
@@ -154,7 +156,7 @@
             // 
             // btnsalir
             // 
-            this.btnsalir.Location = new System.Drawing.Point(385, 143);
+            this.btnsalir.Location = new System.Drawing.Point(384, 155);
             this.btnsalir.Name = "btnsalir";
             this.btnsalir.Size = new System.Drawing.Size(111, 26);
             this.btnsalir.TabIndex = 25;
@@ -163,7 +165,7 @@
             // 
             // btnmodificarComp
             // 
-            this.btnmodificarComp.Location = new System.Drawing.Point(212, 143);
+            this.btnmodificarComp.Location = new System.Drawing.Point(213, 153);
             this.btnmodificarComp.Name = "btnmodificarComp";
             this.btnmodificarComp.Size = new System.Drawing.Size(111, 26);
             this.btnmodificarComp.TabIndex = 23;
@@ -172,7 +174,7 @@
             // 
             // btnregistrarComp
             // 
-            this.btnregistrarComp.Location = new System.Drawing.Point(45, 143);
+            this.btnregistrarComp.Location = new System.Drawing.Point(36, 155);
             this.btnregistrarComp.Name = "btnregistrarComp";
             this.btnregistrarComp.Size = new System.Drawing.Size(111, 23);
             this.btnregistrarComp.TabIndex = 22;
@@ -181,22 +183,23 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtcantidadComp);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.btnguardarComp);
-            this.groupBox1.Controls.Add(this.txtdetalleComp);
+            this.groupBox1.Controls.Add(this.txtcod);
             this.groupBox1.Controls.Add(this.txtvalorComp);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(36, 63);
+            this.groupBox1.Location = new System.Drawing.Point(12, 82);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(637, 74);
+            this.groupBox1.Size = new System.Drawing.Size(613, 56);
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(372, 39);
+            this.label3.Location = new System.Drawing.Point(327, 17);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(49, 13);
             this.label3.TabIndex = 6;
@@ -204,23 +207,24 @@
             // 
             // btnguardarComp
             // 
-            this.btnguardarComp.Location = new System.Drawing.Point(561, 35);
+            this.btnguardarComp.Location = new System.Drawing.Point(541, 13);
             this.btnguardarComp.Name = "btnguardarComp";
             this.btnguardarComp.Size = new System.Drawing.Size(66, 26);
             this.btnguardarComp.TabIndex = 6;
             this.btnguardarComp.Text = "Guardar";
             this.btnguardarComp.UseVisualStyleBackColor = true;
+            this.btnguardarComp.Click += new System.EventHandler(this.btnguardarComp_Click);
             // 
-            // txtdetalleComp
+            // txtcod
             // 
-            this.txtdetalleComp.Location = new System.Drawing.Point(52, 32);
-            this.txtdetalleComp.Name = "txtdetalleComp";
-            this.txtdetalleComp.Size = new System.Drawing.Size(100, 20);
-            this.txtdetalleComp.TabIndex = 5;
+            this.txtcod.Location = new System.Drawing.Point(75, 17);
+            this.txtcod.Name = "txtcod";
+            this.txtcod.Size = new System.Drawing.Size(100, 20);
+            this.txtcod.TabIndex = 5;
             // 
             // txtvalorComp
             // 
-            this.txtvalorComp.Location = new System.Drawing.Point(243, 39);
+            this.txtvalorComp.Location = new System.Drawing.Point(221, 14);
             this.txtvalorComp.Name = "txtvalorComp";
             this.txtvalorComp.Size = new System.Drawing.Size(100, 20);
             this.txtvalorComp.TabIndex = 3;
@@ -228,16 +232,16 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 32);
+            this.label4.Location = new System.Drawing.Point(0, 20);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(40, 13);
+            this.label4.Size = new System.Drawing.Size(69, 13);
             this.label4.TabIndex = 2;
-            this.label4.Text = "Detalle";
+            this.label4.Text = "CodProducto";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(206, 39);
+            this.label2.Location = new System.Drawing.Point(181, 17);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(31, 13);
             this.label2.TabIndex = 0;
@@ -245,17 +249,36 @@
             // 
             // txtcantidadComp
             // 
-            this.txtcantidadComp.Location = new System.Drawing.Point(479, 95);
+            this.txtcantidadComp.Location = new System.Drawing.Point(386, 14);
             this.txtcantidadComp.Name = "txtcantidadComp";
             this.txtcantidadComp.Size = new System.Drawing.Size(100, 20);
             this.txtcantidadComp.TabIndex = 6;
+            // 
+            // cboprod
+            // 
+            this.cboprod.FormattingEnabled = true;
+            this.cboprod.Location = new System.Drawing.Point(15, 29);
+            this.cboprod.Name = "cboprod";
+            this.cboprod.Size = new System.Drawing.Size(145, 21);
+            this.cboprod.TabIndex = 27;
+            this.cboprod.SelectedIndexChanged += new System.EventHandler(this.cboprod_SelectedIndexChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(12, 16);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(154, 13);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "Lista de Productos Registrados";
             // 
             // MscCompra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(685, 365);
-            this.Controls.Add(this.txtcantidadComp);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.cboprod);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.dgcompra);
             this.Controls.Add(this.btnsalir);
@@ -264,6 +287,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "MscCompra";
             this.Text = "MscCompra";
+            this.Load += new System.EventHandler(this.MscCompra_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgcompra)).EndInit();
@@ -288,7 +312,7 @@
         private System.Windows.Forms.Button btnregistrarComp;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnguardarComp;
-        private System.Windows.Forms.TextBox txtdetalleComp;
+        private System.Windows.Forms.TextBox txtcod;
         private System.Windows.Forms.TextBox txtvalorComp;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
@@ -299,5 +323,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.ComboBox cboprod;
+        private System.Windows.Forms.Label label6;
     }
 }

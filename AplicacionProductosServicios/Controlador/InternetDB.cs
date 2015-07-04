@@ -58,7 +58,7 @@ namespace AplicacionProductosServicios.Controlador
             return resp;
         }
 
-        public List<internet> listacon(string fecha)
+        public List<internet> listacon(string fechas1,string fechas2)
         {
 
             InternetDB inter=null;
@@ -67,14 +67,12 @@ namespace AplicacionProductosServicios.Controlador
             MySqlConnection con = cn.getconection();
             try
             {
-                string sqlinter = "Select * from internet where fecha='" + fecha + "'";
+                string sqlinter = "SELECT * FROM internet WHERE CAST(fecha AS DATE) BETWEEN '" + fechas1 + "' AND '" + fechas2 + "'";
                 cmd = new MySqlCommand(sqlinter, con);
                 cmd.CommandType = CommandType.Text;
                 con.Open();
                 MySqlDataReader dr = cmd.ExecuteReader();
-               
-                
-                while (dr.Read())
+               while (dr.Read())
                 {
                     inter = new InternetDB();
                     inter.getInternet().Idinter = Convert.ToInt32(dr[0]);

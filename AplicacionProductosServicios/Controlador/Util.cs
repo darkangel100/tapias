@@ -16,7 +16,7 @@ namespace AplicacionProductosServicios.Controlador
         }
         public static string girafecha(string f)
         {
-            String fec = "";
+            string fec = "";
             fec = f.Substring(6, 4) + "-" + f.Substring(3, 2) + "-" + f.Substring(0, 2);
             return fec;
         }

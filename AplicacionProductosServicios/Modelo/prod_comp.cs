@@ -7,7 +7,13 @@ namespace AplicacionProductosServicios.Modelo
 {
     class prod_comp
     {
+        private int cantp_como;
 
+        public int Cantp_como
+        {
+            get { return cantp_como; }
+            set { cantp_como = value; }
+        }
         private int id_comp;// declaracion del atributo de la entidada prod_compra
 
         public int Id_comp

@@ -51,9 +51,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="conexion.cs" />
+    <Compile Include="Controlador\CompraDB.cs" />
     <Compile Include="Controlador\CuentaDB.cs" />
     <Compile Include="Controlador\InternetDB.cs" />
     <Compile Include="Controlador\pinesDB.cs" />
+    <Compile Include="Controlador\ProdcompraDB.cs" />
     <Compile Include="Controlador\ProductoDB.cs" />
     <Compile Include="Controlador\ProVentaDB.cs" />
     <Compile Include="Controlador\RecargaDB.cs" />

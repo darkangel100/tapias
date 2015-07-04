@@ -13,7 +13,7 @@ namespace AplicacionProductosServicios.Vista
 {
     public partial class MscInternet : Form
     {
-        string fecha,estado;
+        string fecha1,fecha2,estado;
         int fila;
         public MscInternet()
         {
@@ -27,7 +27,7 @@ namespace AplicacionProductosServicios.Vista
             btnguardar.Enabled = true;
             txtconsumointernet.Focus();
             estado = "n";
-
+            btnregistar.Enabled = false;
         }
 
         private void registra()
@@ -67,27 +67,31 @@ namespace AplicacionProductosServicios.Vista
 
             if (estado == "n")
             {
-            
-                registra();
+             registra();
             }
             if (estado == "m")
             {
                 modificar();
             }
-            
+            txtconsumointernet.Enabled = false;
+            txtconsumointernet.Text = null;
+            btnregistar.Enabled = true;
         }
 
         private void listaprofecha()
         {
             InternetDB obji=new InternetDB();
+            double totcom = 0;
             try
             {
-                string fecha = Util.girafecha(dtpingr.Value.ToShortDateString());
-                obji.getInternet().ListaInternet = obji.listacon(fecha);
+                fecha1 = Util.girafecha(dtp1.Value.ToShortDateString());
+                fecha2 = Util.girafecha(dt2.Value.ToShortDateString());
+                obji.getInternet().ListaInternet = obji.listacon(fecha1,fecha2);
                 if (obji.getInternet().ListaInternet.Count == 0)
                 {
                     MessageBox.Show("No exixten registro en el dia de hoy", "Productoy Y servicios", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                    dginternet.Rows.Clear();
+                    
                 }
                 else
                 {
@@ -98,9 +102,11 @@ namespace AplicacionProductosServicios.Vista
                         dginternet.Rows[i].Cells[0].Value = obji.getInternet().ListaInternet[i].Idinter;
                         dginternet.Rows[i].Cells[1].Value = obji.getInternet().ListaInternet[i].Fecha;
                         dginternet.Rows[i].Cells[2].Value = obji.getInternet().ListaInternet[i].Valor;
+                        totcom += obji.getInternet().ListaInternet[i].Valor;
 
                     }
                 }
+                txttotcon.Text = totcom.ToString();
             }
             catch (Exception ex)
             {
@@ -111,10 +117,11 @@ namespace AplicacionProductosServicios.Vista
 
         private void MscInternet_Load(object sender, EventArgs e)
         {
-       
+            dt2.Value = DateTime.Now;
+            dtp1.Value = DateTime.Now;
             listaprofecha();
             lblsnombre.Text ="Usuario  "+ Sesiones.C.Nomper+"  ";
-            lblfacha.Text = Util.girafecha(dtpingr.Value.ToShortDateString());
+            lblfacha.Text = Util.girafecha( dtpbus.Value.ToShortDateString());
                              
             
             
@@ -132,13 +139,17 @@ namespace AplicacionProductosServicios.Vista
             btnmodificar.Enabled = true;
             btnmodificar.Focus();
             fila =dginternet.CurrentRow.Index;
+            btnmodificar.Enabled = true;
+            btnmodificar.Focus();
             
 
         }
 
         private void btnmodificar_Click(object sender, EventArgs e)
         {
+            txtconsumointernet.Enabled = true;
             txtconsumointernet.Text = dginternet.Rows[fila].Cells[2].Value.ToString();
+            txtconsumointernet.Focus();
             estado = "m";
         }
 
@@ -170,6 +181,57 @@ namespace AplicacionProductosServicios.Vista
 
 
         }
+
+        private void dt2_CloseUp(object sender, EventArgs e)
+        {
+            fecha2 = Util.girafecha(dt2.Value.ToShortDateString());
+        }
+        
+        private void dtp1_CloseUp(object sender, EventArgs e)
+        {
+            fecha1 = Util.girafecha(dtp1.Value.ToShortDateString());
+       }
+     
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+         
+            listaprofecha();
+        }
+        private void limpiatxbox()
+        {
+            txtconsumointernet.Text = null;
+        }
+
+        private void txtconsumointernet_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char letra = e.KeyChar;
+
+            if ((letra < 48 || letra > 57) & letra != 8 & letra != 46)
+            {
+                e.Handled = true;
+            }
+
+            if (letra == 46)
+            {
+                if (txtconsumointernet.Text.Contains("."))
+                {
+                    e.Handled = true;
+                }
+            }
+            if (letra == 13)
+            {
+                btnguardar.Focus();
+            }
+        }
+
+        private void dginternet_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+       
+
+        
 
     }
 }

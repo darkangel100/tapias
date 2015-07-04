@@ -82,7 +82,6 @@ C:\Users\USER\Desktop\mi proyecto\AplicacionProductosServicios\obj\x86\Debug\Apl
 C:\Users\USER\Desktop\mi proyecto\AplicacionProductosServicios\obj\x86\Debug\AplicacionProductosServicios.csproj.GenerateResource.Cache
 C:\Users\USER\Desktop\proyecto\AplicacionProductosServicios\obj\x86\Debug\AplicacionProductosServicios.exe
 C:\Users\USER\Desktop\proyecto\AplicacionProductosServicios\obj\x86\Debug\AplicacionProductosServicios.pdb
-C:\Users\USER\Desktop\proyecto\AplicacionProductosServicios\obj\x86\Debug\AplicacionProductosServicios.csprojResolveAssemblyReference.cache
 C:\Users\USER\Desktop\proyecto\AplicacionProductosServicios\obj\x86\Debug\AplicacionProductosServicios.Properties.Resources.resources
 C:\Users\USER\Desktop\proyecto\AplicacionProductosServicios\obj\x86\Debug\AplicacionProductosServicios.Vista.MscAcceso.resources
 C:\Users\USER\Desktop\proyecto\AplicacionProductosServicios\obj\x86\Debug\AplicacionProductosServicios.Vista.MscCabinas.resources
@@ -96,6 +95,28 @@ C:\Users\USER\Desktop\proyecto\AplicacionProductosServicios\obj\x86\Debug\Aplica
 C:\Users\USER\Desktop\proyecto\AplicacionProductosServicios\obj\x86\Debug\AplicacionProductosServicios.Vista.MscRegistraSecretaria.resources
 C:\Users\USER\Desktop\proyecto\AplicacionProductosServicios\obj\x86\Debug\AplicacionProductosServicios.Vista.MscRol.resources
 C:\Users\USER\Desktop\proyecto\AplicacionProductosServicios\obj\x86\Debug\AplicacionProductosServicios.Vista.MscVenta.resources
-C:\Users\USER\Desktop\proyecto\AplicacionProductosServicios\obj\x86\Debug\AplicacionProductosServicios.csproj.GenerateResource.Cache
 C:\Users\USER\Desktop\proyecto\AplicacionProductosServicios\bin\Debug\AplicacionProductosServicios.exe
 C:\Users\USER\Desktop\proyecto\AplicacionProductosServicios\bin\Debug\AplicacionProductosServicios.pdb
+C:\Users\User\Desktop\Nueva carpeta\AplicacionProductosServicios\obj\x86\Debug\AplicacionProductosServicios.exe
+C:\Users\User\Desktop\Nueva carpeta\AplicacionProductosServicios\obj\x86\Debug\AplicacionProductosServicios.pdb
+C:\Users\User\Desktop\Nueva carpeta\AplicacionProductosServicios\bin\Debug\AplicacionProductosServicios.exe
+C:\Users\User\Desktop\Nueva carpeta\AplicacionProductosServicios\bin\Debug\AplicacionProductosServicios.pdb
+C:\Users\User\Desktop\Nueva carpeta\AplicacionProductosServicios\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\User\Desktop\Nueva carpeta\AplicacionProductosServicios\obj\x86\Debug\AplicacionProductosServicios.Properties.Resources.resources
+C:\Users\User\Desktop\Nueva carpeta\AplicacionProductosServicios\obj\x86\Debug\AplicacionProductosServicios.Vista.MscAcceso.resources
+C:\Users\User\Desktop\Nueva carpeta\AplicacionProductosServicios\obj\x86\Debug\AplicacionProductosServicios.Vista.MscCabinas.resources
+C:\Users\User\Desktop\Nueva carpeta\AplicacionProductosServicios\obj\x86\Debug\AplicacionProductosServicios.Vista.MscCompra.resources
+C:\Users\User\Desktop\Nueva carpeta\AplicacionProductosServicios\obj\x86\Debug\AplicacionProductosServicios.Vista.MscEgresos.resources
+C:\Users\User\Desktop\Nueva carpeta\AplicacionProductosServicios\obj\x86\Debug\AplicacionProductosServicios.Vista.MscInternet.resources
+C:\Users\User\Desktop\Nueva carpeta\AplicacionProductosServicios\obj\x86\Debug\AplicacionProductosServicios.Vista.MscMenuPrincipal.resources
+C:\Users\User\Desktop\Nueva carpeta\AplicacionProductosServicios\obj\x86\Debug\AplicacionProductosServicios.Vista.MscPines.resources
+C:\Users\User\Desktop\Nueva carpeta\AplicacionProductosServicios\obj\x86\Debug\AplicacionProductosServicios.Vista.MscProducto.resources
+C:\Users\User\Desktop\Nueva carpeta\AplicacionProductosServicios\obj\x86\Debug\AplicacionProductosServicios.Vista.MscRegargas.resources
+C:\Users\User\Desktop\Nueva carpeta\AplicacionProductosServicios\obj\x86\Debug\AplicacionProductosServicios.Vista.MscRegistraSecretaria.resources
+C:\Users\User\Desktop\Nueva carpeta\AplicacionProductosServicios\obj\x86\Debug\AplicacionProductosServicios.Vista.MscRol.resources
+C:\Users\User\Desktop\Nueva carpeta\AplicacionProductosServicios\obj\x86\Debug\AplicacionProductosServicios.Vista.MscVenta.resources
+C:\Users\User\Desktop\Nueva carpeta\AplicacionProductosServicios\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\User\Desktop\Nueva carpeta\AplicacionProductosServicios\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\User\Desktop\proyecto\AplicacionProductosServicios\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\User\Desktop\proyecto\AplicacionProductosServicios\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\User\Desktop\proyecto\AplicacionProductosServicios\obj\x86\Debug\GenerateResource.write.1.tlog

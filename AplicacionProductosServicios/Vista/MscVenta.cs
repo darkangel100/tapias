@@ -12,7 +12,10 @@ namespace AplicacionProductosServicios.Vista
 {
     public partial class MscVenta : Form
     {
-        public MscVenta()
+        double totvent;
+        string fecha1v ,fecha2v;
+        int fila;
+         public MscVenta()
         {
             InitializeComponent();
         }
@@ -42,13 +45,233 @@ namespace AplicacionProductosServicios.Vista
             }
             
         }
+        private void buscarpro()
+        {
+            ProductoDB objp = new ProductoDB();
+            try
+            {
+                objp.setProductos(objp.listaunprounPro(Convert.ToInt32(cbocod.SelectedValue)));
+                if (objp.getProductos().Stock == 0)
+                {
+                    MessageBox.Show("No cuenta con " + cbocod.SelectedText.ToString() + "en stokc", "Productos y Servicios", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtcantpedida.Enabled = false;
+                }
+                else
+                {
+                    txtnompro.Text = objp.getProductos().NombrePro;
+                    txtvaloruni.Text = objp.getProductos().Prevent.ToString();
+                    txtstock.Text = objp.getProductos().Stock.ToString();
+                    txtcantpedida.Focus();
 
-        
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Errro al presenta datos " + ex.Message, "Productos y servicios", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void registrar()
+        {
+            VentaDB objv = new VentaDB();
+            ProductoDB objp = new ProductoDB();
+            ProVentaDB objpv = new ProVentaDB();
+            int respv;
+            int resppv;
+            int resp;
+            try
+            {
+                totvent = Convert.ToDouble(txtcantpedida.Text) * Convert.ToDouble(txtvaloruni.Text);
+                objv.getventa().Tot_vent = totvent;
+                objv.getventa().Id_per = Sesiones.C.Idper;
+                objv.getventa().Nom_pro = txtnompro.Text;
+                respv = objv.Insertaventa(objv.getventa());
+                if (respv == 0)
+                {
+                    MessageBox.Show("No se ingreso correctamente la venta", "Productos y Servicios", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    objpv.getprodventa().Id_venta = objv.TraeCodigoventa();
+                    objpv.getprodventa().Val_unit = Convert.ToDouble(txtvaloruni.Text);
+                    objpv.getprodventa().Cod_pro = Convert.ToInt32(cbocod.SelectedValue);
+                    objpv.getprodventa().Can_vent = Convert.ToInt32(txtcantpedida.Text);
+                    objpv.getprodventa().Tot_vent = totvent;
+                    resppv = objpv.InseraPV(objpv.getprodventa());
+                    if (resppv > 0)
+                    {
+                       resp= objp.restastork(Convert.ToInt32(cbocod.SelectedValue), Convert.ToInt32(txtcantpedida.Text));
+                       if (resp == 0)
+                       {
+                           MessageBox.Show("Error al ingresar datos", "Productos y Servicios", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                       }
+                       else
+                       {
+                           MessageBox.Show("Datos ingresados correctamente", "Productos y Servicios", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                           listarventasxfeca();
+                       }
+                    }
+
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al ingresar datso" + ex.Message, "Productos y Servicipos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            
+        }
+
+        private void listarventasxfeca()
+        {
+            VentaDB objv = new VentaDB();
+            ProVentaDB objpv = new ProVentaDB();
+            try
+            {
+                fecha1v =Util.girafecha( dtp1.Value.ToShortDateString());
+                fecha2v = Util.girafecha(dtp2.Value.ToShortDateString());
+                objv.getventa().Listavent = objv.listaventa(fecha1v,fecha2v);
+                if (objv.getventa().Listavent.Count == 0)
+                {
+                     MessageBox.Show("No se se han realizado ventas el dia de hoy", "Productos y Servicios", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                     dgventa.Rows.Clear();
+                }
+                else
+                {
+
+                    for (int i = 0; i < objv.getventa().Listavent.Count; i++)
+                    {
+                        dgventa.Rows.Add(1);
+                        dgventa.Rows[i].Cells[0].Value = objv.getventa().Listavent[i].Id_vent;
+                        dgventa.Rows[i].Cells[1].Value = objv.getventa().Listavent[i].Fecha;
+                       // dgventa.Rows[i].Cells[2].Value = objv.getventa().Listavent[i].Id_vent;
+                        //objp.setProducto(objp.Traeproducto(dgit.Rows[i].Cells[1].Value.ToString()));
+                        objpv.setprodventa(objpv.listacon(Convert.ToInt32(objv.getventa().Listavent[i].Id_vent)));
+                        dgventa.Rows[i].Cells[2].Value = objpv.getprodventa().Cod_pro;
+                        dgventa.Rows[i].Cells[3].Value = objv.getventa().Listavent[i].Nom_pro;
+                        dgventa.Rows[i].Cells[4].Value = objpv.getprodventa().Val_unit;
+                        dgventa.Rows[i].Cells[5].Value = objpv.getprodventa().Can_vent;
+                        dgventa.Rows[i].Cells[6].Value = objpv.getprodventa().Tot_vent;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+
+        private void modificar()
+        {
+            ProductoDB objp = new ProductoDB();
+           
+            int respven;
+            //int resp;
+            int repv;
+            
+            try
+            {
+                VentaDB objven = new VentaDB();
+                objven.getventa().Id_vent =Convert.ToInt32( dgventa.Rows[fila].Cells[0].Value);
+                totvent = Convert.ToInt32(txtcantpedida.Text.Trim()) * Convert.ToDouble(txtvaloruni.Text.Trim());
+                objven.getventa().Tot_vent = totvent;
+                respven = objven.modificaventa(objven.getventa());
+                if (respven == 0)
+                {
+                    MessageBox.Show("No se modifico correctamente la venta", "Productos y Servicios", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    ProVentaDB objpv = new ProVentaDB();
+                    objpv.getprodventa().Id_venta = Convert.ToInt32(dgventa.Rows[fila].Cells[0].Value);
+                    objpv.getprodventa().Val_unit = Convert.ToDouble(txtvaloruni.Text.Trim());
+                    objpv.getprodventa().Tot_vent = totvent;
+                    repv = objpv.modifcapv(objpv.getprodventa());
+                    if (repv > 0)
+                    {
+                        //if(cantpe<Convert.ToInt32(txtcantpedida.Text.Trim())
+                        
+
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al modificar datos"+ex.Message,"Productos y Servicios",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+
+        }
 
         private void MscVenta_Load(object sender, EventArgs e)
         {
+            dtp2.Value = DateTime.Now;
+            dtp1.Value = DateTime.Now;
             traeproducto();
+            listarventasxfeca();
+       
         }
+
+        private void btnbuscardatos_Click(object sender, EventArgs e)
+        {
+            groupBox1.Enabled = true;
+            buscarpro();
+            panel1.Enabled = false;
+        }
+
+        private void btnmodivent_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnguardar_Click(object sender, EventArgs e)
+        {
+            groupBox1.Enabled = false;
+            registrar();
+        }
+
+        private void btnnuevoVent_Click(object sender, EventArgs e)
+        {
+            panel1.Enabled = true;
+        }
+
+        private void cbocod_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgventa_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            fila = dgventa.CurrentRow.Index;
+             
+        }
+
+        private void dtp1_ValueChanged(object sender, EventArgs e)
+        {
+            fecha1v = dtp1.Value.ToShortDateString();
+        }
+
+        private void dtp2_ValueChanged(object sender, EventArgs e)
+        {
+            fecha2v = dtp2.Value.ToShortDateString();
+        }
+
+
+        private void btnbusvent_Click(object sender, EventArgs e)
+        {
+            listarventasxfeca();
+        }
+
+       
+
+        
+     
 
 
     }

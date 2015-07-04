@@ -7,7 +7,13 @@ namespace AplicacionProductosServicios.Modelo
 {
     class compra
     {
+        private string nom_pro;
 
+        public string Nom_pro
+        {
+            get { return nom_pro; }
+            set { nom_pro = value; }
+        }
         private int id_comp;
 
         public int Id_comp

@@ -7,6 +7,15 @@ namespace AplicacionProductosServicios.Modelo
 {
     class venta
     {
+
+        private string nom_pro;
+
+        public string Nom_pro
+        {
+            get { return nom_pro; }
+            set { nom_pro = value; }
+        }
+
         private int id_vent; // declaracion del atributo de la entidada venta
 
         public int Id_vent// metdodo contructor 
