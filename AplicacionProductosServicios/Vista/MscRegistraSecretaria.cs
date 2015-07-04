@@ -305,13 +305,16 @@ namespace AplicacionProductosServicios.Vista
                     }
                     else
                     {
-                        dgSecretaria.Rows.Add(1);
-                        dgSecretaria.DataSource = objU.getUsuario().ListaPersonas;
-                        dgSecretaria.Rows[fila].Cells[1].Value = objU.getUsuario().ListaPersonas[fila].Cedper;
-                        dgSecretaria.Rows[fila].Cells[2].Value = objU.getUsuario().ListaPersonas[fila].Apeper;
-                        dgSecretaria.Rows[fila].Cells[3].Value = objU.getUsuario().ListaPersonas[fila].Nomper;
-                        dgSecretaria.Rows[fila].Cells[4].Value = objU.getUsuario().ListaPersonas[fila].Dirper;
-                        dgSecretaria.Rows[fila].Cells[5].Value = objU.getUsuario().ListaPersonas[fila].Telper;
+                        dgSecretaria.Rows.Add(objU.getUsuario().ListaPersonas.Count);
+                        for (int i = 0; i < objU.getUsuario().ListaPersonas.Count; i++)
+                        {
+
+                            dgSecretaria.Rows[fila].Cells[1].Value = objU.getUsuario().ListaPersonas[fila].Cedper;
+                            dgSecretaria.Rows[fila].Cells[2].Value = objU.getUsuario().ListaPersonas[fila].Apeper;
+                            dgSecretaria.Rows[fila].Cells[3].Value = objU.getUsuario().ListaPersonas[fila].Nomper;
+                            dgSecretaria.Rows[fila].Cells[4].Value = objU.getUsuario().ListaPersonas[fila].Dirper;
+                            dgSecretaria.Rows[fila].Cells[5].Value = objU.getUsuario().ListaPersonas[fila].Telper;
+                        }
                     }
 
                 }
@@ -324,13 +327,16 @@ namespace AplicacionProductosServicios.Vista
                     }
                     else
                     {
-                        dgSecretaria.Rows.Add(1);
-                        dgSecretaria.DataSource = objU.getUsuario().ListaPersonas;
-                        dgSecretaria.Rows[fila].Cells[1].Value = objU.getUsuario().ListaPersonas[fila].Cedper;
-                        dgSecretaria.Rows[fila].Cells[2].Value = objU.getUsuario().ListaPersonas[fila].Apeper;
-                        dgSecretaria.Rows[fila].Cells[3].Value = objU.getUsuario().ListaPersonas[fila].Nomper;
-                        dgSecretaria.Rows[fila].Cells[4].Value = objU.getUsuario().ListaPersonas[fila].Dirper;
-                        dgSecretaria.Rows[fila].Cells[5].Value = objU.getUsuario().ListaPersonas[fila].Telper;
+                        dgSecretaria.Rows.Add(objU.getUsuario().ListaPersonas.Count);
+                        for (int i = 0; i < objU.getUsuario().ListaPersonas.Count; i++)
+                        {
+
+                            dgSecretaria.Rows[fila].Cells[1].Value = objU.getUsuario().ListaPersonas[fila].Cedper;
+                            dgSecretaria.Rows[fila].Cells[2].Value = objU.getUsuario().ListaPersonas[fila].Apeper;
+                            dgSecretaria.Rows[fila].Cells[3].Value = objU.getUsuario().ListaPersonas[fila].Nomper;
+                            dgSecretaria.Rows[fila].Cells[4].Value = objU.getUsuario().ListaPersonas[fila].Dirper;
+                            dgSecretaria.Rows[fila].Cells[5].Value = objU.getUsuario().ListaPersonas[fila].Telper;
+                        }
                     }
                 }
             }

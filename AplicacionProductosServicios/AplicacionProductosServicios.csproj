@@ -56,6 +56,7 @@
     <Compile Include="Controlador\pinesDB.cs" />
     <Compile Include="Controlador\ProductoDB.cs" />
     <Compile Include="Controlador\ProVentaDB.cs" />
+    <Compile Include="Controlador\RecargaDB.cs" />
     <Compile Include="Controlador\rolDB.cs" />
     <Compile Include="Controlador\Sesiones.cs" />
     <Compile Include="Controlador\UsuarioDB.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Modelo\Producto.cs" />
     <Compile Include="Modelo\prod_comp.cs" />
     <Compile Include="Modelo\pro_vent.cs" />
+    <Compile Include="Modelo\Recarga.cs" />
     <Compile Include="Modelo\Rol.cs" />
     <Compile Include="Modelo\Usuario.cs" />
     <Compile Include="Modelo\venta.cs" />

@@ -113,18 +113,10 @@ namespace AplicacionProductosServicios.Vista
         {
             try
             {
-                pinesDB objP = new pinesDB();
 
-                objP.setPines(objP.TraePin(Convert.ToInt32(dtgPines.Rows[fila].Cells[0].Value.ToString())));
-                if (objP.getPines().Idpines == 0)
-                {
-                    MessageBox.Show("No existe Registro de Pines", "Productos y Servicios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                else
-                {
-                    txtregPines.Text = objP.getPines().Canpines.ToString();
-                    groupBox1.Enabled = true;
-                }
+                txtregPines.Text = dtgPines.Rows[fila].Cells[2].Value.ToString();
+                groupBox1.Enabled = true;
+                
             }
             catch (Exception ex)
             {

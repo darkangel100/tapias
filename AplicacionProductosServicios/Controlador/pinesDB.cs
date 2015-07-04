@@ -92,7 +92,7 @@ namespace AplicacionProductosServicios.Controlador
             cn.Close();
             return lisPines;
         }
-        public Pines TraePin(int id)
+       /* public Pines TraePin(int id)
         {
             pinesDB pin = null;
             MySqlCommand cmd;
@@ -128,7 +128,7 @@ namespace AplicacionProductosServicios.Controlador
             cmd = null;
             cn.Close();
             return pin.getPines();
-        }
+        }*/
         public int ActualizaPines(Pines id)
         {
             MySqlCommand cmd;
@@ -155,6 +155,87 @@ namespace AplicacionProductosServicios.Controlador
             cmd = null;
             cn.Close();
             return resp;
+        }
+        public List<Pines> BuscarPines(string fec)
+        {
+            pinesDB pi = null;
+            List<Pines> LisdeBusqueda = new List<Pines>();
+            MySqlCommand cmd;
+            MySqlConnection cn = con.getconection();
+
+            try
+            {
+                string sqlbuscar = "Select * from pines where fecha like '%" + fec + "%' ";
+                cmd = new MySqlCommand(sqlbuscar, cn);
+                cmd.CommandType = CommandType.Text;
+                cn.Open();
+                MySqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    pi = new pinesDB();
+                    pi.getPines().Idpines = Convert.ToInt32(dr[0].ToString());
+                    pi.getPines().Idper = Convert.ToInt32(dr[1].ToString());
+                    // pi.getPines().Fecha = Convert.ToDateTime(dr[2].ToString());
+                    pi.getPines().Canpines = Convert.ToInt32(dr[3].ToString());
+                    //Traer Fecha
+                    string fecha = dr[2].ToString();
+                    DateTime dateValue = DateTime.Parse(fecha);
+                    pi.getPines().Fecha = Convert.ToDateTime(dateValue.ToString("aaaa-mm-dd"));
+
+                    LisdeBusqueda.Add(pi.getPines());
+
+                }
+                dr.Close();
+            }
+            catch (MySqlException ex)
+            {
+                pi = null;
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                pi = null;
+                throw ex;
+            }
+            cmd = null;
+            cn.Close();
+            return LisdeBusqueda;
+        }
+        public int sumapines()
+        {
+            int pines = 0;
+            MySqlCommand cmd;
+            MySqlConnection cn = con.getconection();
+
+            try
+            {
+                string sqlcad = "SELECT SUM(can_pines) AS total FROM pines";
+                cmd = new MySqlCommand(sqlcad, cn);
+                cmd.CommandType = CommandType.Text;
+                cn.Open();
+                MySqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    pines = Convert.ToInt32(dr[0].ToString());
+
+                }
+                dr.Close();
+            }
+            catch (MySqlException ex)
+            {
+                pines = 0;
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                pines = 0;
+                throw ex;
+            }
+            cmd = null;
+            cn.Close();
+            return pines;
         }
     }
 }
