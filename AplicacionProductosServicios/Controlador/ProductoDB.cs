@@ -98,6 +98,52 @@ namespace AplicacionProductosServicios.Controlador
             cmd = null;
             return ListaPro;
         }
+        public Producto listaunprounPro(int cod_pro)
+        {
+            ProductoDB pro = null;
+            MySqlCommand cmd;
+            MySqlConnection cn = con.getconection();
+            try
+            {
+                string sqlp = "Select * from producto where cod_prod='" + cod_pro + "'";
+                cmd = new MySqlCommand(sqlp, cn);
+                cmd.CommandType = CommandType.Text;
+                cn.Open();
+                MySqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    pro = new ProductoDB();
+                    pro.getProductos().Codprod = Convert.ToInt32(dr[0]);
+                    pro.getProductos().NombrePro = dr[1].ToString();
+                    pro.getProductos().Precom = Convert.ToDouble(dr[2]);
+                    pro.getProductos().Prevent = Convert.ToDouble(dr[3]);
+                    pro.getProductos().Stock = Convert.ToInt32(dr[4]);
+                    pro.getProductos().Cantgan = Convert.ToDouble(dr[5]);
+
+
+
+                }
+                dr.Close();
+            }
+            catch (MySqlException ex)
+            {
+                pro = null;
+                throw ex;
+
+            }
+            catch (Exception ex)
+            {
+                pro = null;
+                throw ex;
+            }
+            cn.Close();
+            cmd = null;
+            return pro.getProductos();
+        }
+
+
+
+        
         public int Actualizacantidad(int co, int can)
         {
             MySqlCommand cmd;
@@ -127,6 +173,36 @@ namespace AplicacionProductosServicios.Controlador
             return resp;
 
         }
+        public int sumastock(int co, int can)
+        {
+            MySqlCommand cmd;
+            MySqlConnection cn = con.getconection();
+            int resp;
+
+            try
+            {
+                string sqlcad = "Update producto set stock=stock+" + can + " where cod_prod='" + co + "'";
+                cmd = new MySqlCommand(sqlcad, cn);
+                cmd.CommandType = CommandType.Text;
+                cn.Open();
+                resp = cmd.ExecuteNonQuery();
+            }
+            catch (MySqlException ex)
+            {
+                resp = 0;
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                resp = 0;
+                throw ex;
+            }
+            cmd = null;
+            cn.Close();
+            return resp;
+
+        }
+
         
     }
         

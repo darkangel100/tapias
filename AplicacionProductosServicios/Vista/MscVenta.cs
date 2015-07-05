@@ -104,7 +104,7 @@ namespace AplicacionProductosServicios.Vista
                     resppv = objpv.InseraPV(objpv.getprodventa());
                     if (resppv > 0)
                     {
-                       resp= objp.restastork(Convert.ToInt32(cbocod.SelectedValue), Convert.ToInt32(txtcantpedida.Text));
+                       resp= objp.Actualizacantidad(Convert.ToInt32(cbocod.SelectedValue), Convert.ToInt32(txtcantpedida.Text));
                        if (resp == 0)
                        {
                            MessageBox.Show("Error al ingresar datos", "Productos y Servicios", MessageBoxButtons.OK, MessageBoxIcon.Error);
