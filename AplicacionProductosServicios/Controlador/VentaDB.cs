@@ -27,7 +27,7 @@ namespace AplicacionProductosServicios.Controlador
         }
 
 
-        public int Insertaventa(venta ven)// metodo de tipo de dato int donde recibe un parametro de tipo venta y retorna un dato de tipo int y sirve para insertar datos en la  tabla venta 
+        public int Insertaventa(venta ven)// METODO llamado insertaveta al cual se lo utiliza para insertar datos ala tabla benta de la base de datos, debuelbe un datos de tipo in y recive un parametro de tipo veta
         {
             MySqlCommand cmd;
             MySqlConnection cn = con.getconection();
@@ -55,7 +55,7 @@ namespace AplicacionProductosServicios.Controlador
             cmd = null;
             return resp;
         }
-        public int TraeCodigoventa()
+        public int TraeCodigoventa()// metodo llamado trecodiogo el cual sireve para traer el codigo de venta y retorna un dato de tipo entero 
         {
             int nro = 0;
             MySqlConnection cn = con.getconection();
@@ -94,7 +94,7 @@ namespace AplicacionProductosServicios.Controlador
 
         }
 
-        public List<venta> listaventa(string fecha1,string fecha2)
+        public List<venta> listaventa(string fecha1,string fecha2) // metodo llamado listaventa el cual me permite listar los datos por fecha  dela tabla venta de la base de datos endon recive dos parameros de tipo string y retorna una lista de tipo venta
         {
 
             VentaDB ven = null;
@@ -136,7 +136,7 @@ namespace AplicacionProductosServicios.Controlador
 
 
         }
-        public int modificaventa(venta v)// metodo de tipo de dato int donde recibe un parametro de tipo venta y retorna un dato de tipo int y sirve para insertar datos en la  tabla venta 
+        public int modificaventa(venta v)// metodo llamado modificaventa el cual permite modificar datos en la tabla venta y recibe un parametro de tipo venta y retorna un dato entero
         {
             MySqlCommand cmd;
             MySqlConnection cn = con.getconection();

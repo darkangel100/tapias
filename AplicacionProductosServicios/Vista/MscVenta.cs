@@ -54,7 +54,8 @@ namespace AplicacionProductosServicios.Vista
                 if (objp.getProductos().Stock == 0)
                 {
                     MessageBox.Show("No cuenta con " + cbocod.SelectedText.ToString() + "en stokc", "Productos y Servicios", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    txtcantpedida.Enabled = false;
+                    groupBox1.Enabled = false;
+                    panel1.Enabled = true;
                 }
                 else
                 {
@@ -74,6 +75,8 @@ namespace AplicacionProductosServicios.Vista
 
         private void registrar()
         {
+            if(Convert.ToInt32(txtcantpedida.Text.Trim())<=Convert.ToInt32(txtstock.Text.Trim()))
+            {
             VentaDB objv = new VentaDB();
             ProductoDB objp = new ProductoDB();
             ProVentaDB objpv = new ProVentaDB();
@@ -82,7 +85,7 @@ namespace AplicacionProductosServicios.Vista
             int resp;
             try
             {
-                totvent = Convert.ToDouble(txtcantpedida.Text) * Convert.ToDouble(txtvaloruni.Text);
+                totvent = Convert.ToDouble(txtcantpedida.Text.Trim()) * Convert.ToDouble(txtvaloruni.Text.Trim());
                 objv.getventa().Tot_vent = totvent;
                 objv.getventa().Id_per = Sesiones.C.Idper;
                 objv.getventa().Nom_pro = txtnompro.Text;
@@ -121,12 +124,18 @@ namespace AplicacionProductosServicios.Vista
             {
                 MessageBox.Show("Error al ingresar datso" + ex.Message, "Productos y Servicipos", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            }
+            else{
+
+                MessageBox.Show("Debe ingresar un valor menor o igual al stock no puede vender mas de lo que no tiene", "Productos y Servicios", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
 
             
         }
 
         private void listarventasxfeca()
         {
+     
             VentaDB objv = new VentaDB();
             ProVentaDB objpv = new ProVentaDB();
             try
@@ -141,7 +150,7 @@ namespace AplicacionProductosServicios.Vista
                 }
                 else
                 {
-
+                    dgventa.Rows.Clear();
                     for (int i = 0; i < objv.getventa().Listavent.Count; i++)
                     {
                         dgventa.Rows.Add(1);
@@ -232,18 +241,20 @@ namespace AplicacionProductosServicios.Vista
 
         private void btnguardar_Click(object sender, EventArgs e)
         {
-            groupBox1.Enabled = false;
             registrar();
+            limpiaCampos();
+            groupBox1.Enabled = false;
         }
 
         private void btnnuevoVent_Click(object sender, EventArgs e)
         {
             panel1.Enabled = true;
+            limpiaCampos();
         }
 
         private void cbocod_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            limpiaCampos();
         }
 
         private void dgventa_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -268,6 +279,49 @@ namespace AplicacionProductosServicios.Vista
             listarventasxfeca();
         }
 
+        private void limpiaCampos()
+        {
+            txtcantpedida.Text = null;
+            txtnompro.Text = null;
+            txtstock.Text = null;
+            txtvaloruni.Text = null;
+
+        }
+
+        private void txtcantpedida_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char letra = e.KeyChar;
+
+            if ((letra < 48 || letra > 57) & letra != 8)
+            {
+                e.Handled = true;
+            }
+            if (letra == 13)
+            {
+                btnguardar.Focus();
+            }
+        }
+
+        private void txtvaloruni_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char letra = e.KeyChar;
+
+            if ((letra < 48 || letra > 57) & letra != 8 & letra != 46)
+            {
+                e.Handled = true;
+            }
+
+            if (letra == 46)
+            {
+                if (txtvaloruni.Text.Contains("."))
+                {
+                    e.Handled = true;
+                }
+            }
+       
+                  }
+
+        
        
 
         

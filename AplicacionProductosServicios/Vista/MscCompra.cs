@@ -62,6 +62,7 @@ namespace AplicacionProductosServicios.Vista
             int respc;
             int resprodc;
             int resp;
+            
             try
             {
                 objcomp.getcompra().Cant = Convert.ToInt32(txtcantidadComp.Text);
@@ -107,6 +108,13 @@ namespace AplicacionProductosServicios.Vista
         {
             registrar();
         }
+
+        private void btnmodificarComp_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        
             
 
     }

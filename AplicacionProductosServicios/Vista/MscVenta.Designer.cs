@@ -72,6 +72,7 @@
             this.cbocod.Name = "cbocod";
             this.cbocod.Size = new System.Drawing.Size(121, 21);
             this.cbocod.TabIndex = 21;
+            this.cbocod.Text = "Inventario";
             this.cbocod.SelectedIndexChanged += new System.EventHandler(this.cbocod_SelectedIndexChanged);
             // 
             // btnbuscardatos
@@ -174,7 +175,6 @@
             this.groupBox2.TabIndex = 30;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos de busqueda";
-            
             // 
             // label4
             // 
@@ -201,7 +201,6 @@
             this.dtp1.Name = "dtp1";
             this.dtp1.Size = new System.Drawing.Size(97, 20);
             this.dtp1.TabIndex = 16;
-        
             this.dtp1.ValueChanged += new System.EventHandler(this.dtp1_ValueChanged);
             // 
             // label5
@@ -255,6 +254,7 @@
             // 
             this.txtstock.Location = new System.Drawing.Point(314, 30);
             this.txtstock.Name = "txtstock";
+            this.txtstock.ReadOnly = true;
             this.txtstock.Size = new System.Drawing.Size(64, 20);
             this.txtstock.TabIndex = 33;
             // 
@@ -283,6 +283,7 @@
             this.txtcantpedida.Name = "txtcantpedida";
             this.txtcantpedida.Size = new System.Drawing.Size(62, 20);
             this.txtcantpedida.TabIndex = 8;
+            this.txtcantpedida.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtcantpedida_KeyPress);
             // 
             // label3
             // 
@@ -308,11 +309,13 @@
             this.txtvaloruni.Name = "txtvaloruni";
             this.txtvaloruni.Size = new System.Drawing.Size(64, 20);
             this.txtvaloruni.TabIndex = 5;
+            this.txtvaloruni.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtvaloruni_KeyPress);
             // 
             // txtnompro
             // 
             this.txtnompro.Location = new System.Drawing.Point(56, 30);
             this.txtnompro.Name = "txtnompro";
+            this.txtnompro.ReadOnly = true;
             this.txtnompro.Size = new System.Drawing.Size(100, 20);
             this.txtnompro.TabIndex = 4;
             // 
