@@ -102,8 +102,8 @@ namespace AplicacionProductosServicios.Vista
             
             per.getUsuario().Idper = Convert.ToInt32(txtid.Text.Trim());
             per.getUsuario().Cedper = txtcedSecret.Text.Trim();
-            per.getUsuario().Apeper = txtnomsecret.Text.Trim();
-            per.getUsuario().Nomper = txtapeSecret.Text.Trim();
+            per.getUsuario().Apeper = txtapeSecret.Text.Trim();
+            per.getUsuario().Nomper =  txtnomsecret.Text.Trim();
             per.getUsuario().Dirper = txtdirecSecret.Text.Trim();
             per.getUsuario().Telper = txttelSecret.Text.Trim();
 
@@ -138,8 +138,8 @@ namespace AplicacionProductosServicios.Vista
                         dgSecretaria.Rows.Add(1);
                         dgSecretaria.Rows[i].Cells[0].Value = objU.getUsuario().ListaPersonas[i].Idper;
                         dgSecretaria.Rows[i].Cells[1].Value = objU.getUsuario().ListaPersonas[i].Cedper;
-                        dgSecretaria.Rows[i].Cells[2].Value = objU.getUsuario().ListaPersonas[i].Apeper;
-                        dgSecretaria.Rows[i].Cells[3].Value = objU.getUsuario().ListaPersonas[i].Nomper;
+                        dgSecretaria.Rows[i].Cells[2].Value = objU.getUsuario().ListaPersonas[i].Nomper;
+                        dgSecretaria.Rows[i].Cells[3].Value = objU.getUsuario().ListaPersonas[i].Apeper;
                         dgSecretaria.Rows[i].Cells[4].Value = objU.getUsuario().ListaPersonas[i].Dirper;
                         dgSecretaria.Rows[i].Cells[5].Value = objU.getUsuario().ListaPersonas[i].Telper;
                         //dgSecretaria.Rows[i].Cells[6].Value = objU.getUsuario().ListaPersonas[i].Estper;
@@ -162,14 +162,23 @@ namespace AplicacionProductosServicios.Vista
 
         private void btnguardar_Secret_Click(object sender, EventArgs e)
         {
-            if (estado == "G")
+            //validacion
+            if (txtcedSecret.Text.Trim().Length > 0 && txtdirecSecret.Text.Trim().Length > 0 & txtapeSecret.Text.Trim().Length > 0 & txtnomsecret.Text.Trim().Length > 0 & txttelSecret.Text.Trim().Length > 0 & txtclave.Text.Trim().Length > 0 & cborol.Text.Trim().Length > 0)
             {
-                llenar();
+                if (estado == "G")
+                {
+                    llenar();
+                }
+                if (estado == "E")
+                {
+                    CambiarDatos();
+                }
             }
-            if(estado=="E")
+            else
             {
-                CambiarDatos();
+                MessageBox.Show("Algunos campos estan vacíos", "Productos y Servicios", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+            
         }
         private void validarLetras(KeyPressEventArgs e)
         {
@@ -215,12 +224,7 @@ namespace AplicacionProductosServicios.Vista
   
         private void Modificar()
         {
-            UsuarioDB objSecre = new UsuarioDB();
-            /*txtcedSecret.Text = dgSecretaria.Rows[fila].Cells[1].Value.ToString();
-            txtapeSecret.Text = dgSecretaria.Rows[fila].Cells[2].Value.ToString();
-            txtnomsecret.Text = dgSecretaria.Rows[fila].Cells[3].Value.ToString();
-            txtdirecSecret.Text = dgSecretaria.Rows[fila].Cells[4].Value.ToString();
-            txttelSecret.Text = dgSecretaria.Rows[fila].Cells[5].Value.ToString();*/
+            UsuarioDB objSecre = new UsuarioDB();           
 
             objSecre.setUsuario(objSecre.Traepersona(dgSecretaria.Rows[fila].Cells[1].Value.ToString()));
             if (objSecre.getUsuario().Cedper == "")
@@ -235,7 +239,7 @@ namespace AplicacionProductosServicios.Vista
                 txtnomsecret.Text = objSecre.getUsuario().Apeper;
                 txtdirecSecret.Text = objSecre.getUsuario().Dirper;
                 txttelSecret.Text = objSecre.getUsuario().Telper;
-                //txtclave.Text = objC.getCuenta().Clave;
+                
                 if (objSecre.getUsuario().Estper.Equals("A"))
                     rdbactivo.Checked = true;
                 else

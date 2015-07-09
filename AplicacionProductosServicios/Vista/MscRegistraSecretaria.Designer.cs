@@ -73,27 +73,28 @@
             // 
             this.btnBuscar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
-            this.btnBuscar.Location = new System.Drawing.Point(595, 24);
+            this.btnBuscar.Location = new System.Drawing.Point(627, 20);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(29, 27);
+            this.btnBuscar.Size = new System.Drawing.Size(39, 27);
             this.btnBuscar.TabIndex = 58;
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // txtbusSecret
             // 
+            this.txtbusSecret.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtbusSecret.Location = new System.Drawing.Point(489, 27);
             this.txtbusSecret.Name = "txtbusSecret";
-            this.txtbusSecret.Size = new System.Drawing.Size(100, 20);
+            this.txtbusSecret.Size = new System.Drawing.Size(123, 21);
             this.txtbusSecret.TabIndex = 57;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(290, 24);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(46, 13);
+            this.label8.Size = new System.Drawing.Size(51, 15);
             this.label8.TabIndex = 56;
             this.label8.Text = "Buscar";
             // 
@@ -124,6 +125,8 @@
             // 
             this.dgSecretaria.AllowUserToAddRows = false;
             this.dgSecretaria.AllowUserToDeleteRows = false;
+            this.dgSecretaria.BackgroundColor = System.Drawing.SystemColors.ScrollBar;
+            this.dgSecretaria.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             this.dgSecretaria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgSecretaria.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id_per,
@@ -132,6 +135,7 @@
             this.Column2,
             this.Column4,
             this.Column5});
+            this.dgSecretaria.GridColor = System.Drawing.Color.Moccasin;
             this.dgSecretaria.Location = new System.Drawing.Point(81, 418);
             this.dgSecretaria.Name = "dgSecretaria";
             this.dgSecretaria.ReadOnly = true;
@@ -200,6 +204,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.groupBox1.Controls.Add(this.txtid);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.cborol);
@@ -220,7 +225,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Enabled = false;
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(28, 57);
+            this.groupBox1.Location = new System.Drawing.Point(28, 59);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(629, 305);
             this.groupBox1.TabIndex = 45;
@@ -253,7 +258,6 @@
             this.cborol.Name = "cborol";
             this.cborol.Size = new System.Drawing.Size(240, 25);
             this.cborol.TabIndex = 30;
-            //this.cborol.SelectedIndexChanged += new System.EventHandler(this.cborol_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -421,7 +425,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(720, 582);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(712, 582);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.txtbusSecret);
             this.Controls.Add(this.label8);

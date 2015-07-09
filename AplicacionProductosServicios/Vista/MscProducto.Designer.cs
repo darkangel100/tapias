@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MscProducto));
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rdbpasivoProd = new System.Windows.Forms.RadioButton();
@@ -45,7 +46,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnbuscaProd = new System.Windows.Forms.Button();
             this.txtbusqProd = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.cboOpcionBusProd = new System.Windows.Forms.ComboBox();
@@ -61,6 +61,7 @@
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tot = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.btnBuscar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -69,6 +70,7 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Enabled = false;
@@ -79,11 +81,13 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.groupBox1.Controls.Add(this.rdbpasivoProd);
             this.groupBox1.Controls.Add(this.rdbactivoProd);
-            this.groupBox1.Location = new System.Drawing.Point(336, 20);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(316, 20);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(126, 100);
+            this.groupBox1.Size = new System.Drawing.Size(146, 100);
             this.groupBox1.TabIndex = 63;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Estado del Producto";
@@ -93,7 +97,7 @@
             this.rdbpasivoProd.AutoSize = true;
             this.rdbpasivoProd.Location = new System.Drawing.Point(7, 63);
             this.rdbpasivoProd.Name = "rdbpasivoProd";
-            this.rdbpasivoProd.Size = new System.Drawing.Size(57, 17);
+            this.rdbpasivoProd.Size = new System.Drawing.Size(63, 17);
             this.rdbpasivoProd.TabIndex = 1;
             this.rdbpasivoProd.TabStop = true;
             this.rdbpasivoProd.Text = "Pasivo";
@@ -104,7 +108,7 @@
             this.rdbactivoProd.AutoSize = true;
             this.rdbactivoProd.Location = new System.Drawing.Point(7, 27);
             this.rdbactivoProd.Name = "rdbactivoProd";
-            this.rdbactivoProd.Size = new System.Drawing.Size(55, 17);
+            this.rdbactivoProd.Size = new System.Drawing.Size(61, 17);
             this.rdbactivoProd.TabIndex = 0;
             this.rdbactivoProd.TabStop = true;
             this.rdbactivoProd.Text = "Activo";
@@ -112,7 +116,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.groupBox2.Controls.Add(this.txtpreciovent);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label4);
@@ -125,6 +129,7 @@
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(36, 3);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(214, 232);
@@ -134,17 +139,18 @@
             // 
             // txtpreciovent
             // 
-            this.txtpreciovent.Location = new System.Drawing.Point(85, 204);
+            this.txtpreciovent.Location = new System.Drawing.Point(96, 204);
             this.txtpreciovent.Name = "txtpreciovent";
             this.txtpreciovent.Size = new System.Drawing.Size(100, 20);
             this.txtpreciovent.TabIndex = 11;
+            this.txtpreciovent.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtpreciovent_KeyPress);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(10, 204);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(68, 13);
+            this.label6.Size = new System.Drawing.Size(80, 13);
             this.label6.TabIndex = 10;
             this.label6.Text = "Precio Venta";
             // 
@@ -153,7 +159,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(10, 84);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
+            this.label4.Size = new System.Drawing.Size(40, 13);
             this.label4.TabIndex = 3;
             this.label4.Text = "Stock";
             // 
@@ -163,29 +169,32 @@
             this.txtstock.Name = "txtstock";
             this.txtstock.Size = new System.Drawing.Size(80, 20);
             this.txtstock.TabIndex = 7;
+            this.txtstock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtstock_KeyPress);
             // 
             // txtcantgan
             // 
-            this.txtcantgan.Location = new System.Drawing.Point(91, 156);
+            this.txtcantgan.Location = new System.Drawing.Point(105, 153);
             this.txtcantgan.Name = "txtcantgan";
             this.txtcantgan.Size = new System.Drawing.Size(80, 20);
             this.txtcantgan.TabIndex = 9;
+            this.txtcantgan.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtcantgan_KeyPress);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(7, 156);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(78, 13);
+            this.label5.Size = new System.Drawing.Size(91, 13);
             this.label5.TabIndex = 8;
             this.label5.Text = "Cant Ganancia";
             // 
             // txtpreComp
             // 
-            this.txtpreComp.Location = new System.Drawing.Point(89, 112);
+            this.txtpreComp.Location = new System.Drawing.Point(102, 112);
             this.txtpreComp.Name = "txtpreComp";
             this.txtpreComp.Size = new System.Drawing.Size(80, 20);
             this.txtpreComp.TabIndex = 6;
+            this.txtpreComp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtpreComp_KeyPress);
             // 
             // txtnompro
             // 
@@ -193,6 +202,7 @@
             this.txtnompro.Name = "txtnompro";
             this.txtnompro.Size = new System.Drawing.Size(80, 20);
             this.txtnompro.TabIndex = 5;
+            this.txtnompro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtnompro_KeyPress);
             // 
             // txtCodProd
             // 
@@ -200,13 +210,14 @@
             this.txtCodProd.Name = "txtCodProd";
             this.txtCodProd.Size = new System.Drawing.Size(80, 20);
             this.txtCodProd.TabIndex = 4;
+            this.txtCodProd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodProd_KeyPress);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(7, 119);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(76, 13);
+            this.label3.Size = new System.Drawing.Size(89, 13);
             this.label3.TabIndex = 2;
             this.label3.Text = "Precio Compra";
             // 
@@ -215,7 +226,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(10, 55);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 13);
+            this.label2.Size = new System.Drawing.Size(50, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "Nombre";
             // 
@@ -224,18 +235,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(10, 27);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 13);
+            this.label1.Size = new System.Drawing.Size(46, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Codigo";
-            // 
-            // btnbuscaProd
-            // 
-            this.btnbuscaProd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnbuscaProd.Location = new System.Drawing.Point(600, 21);
-            this.btnbuscaProd.Name = "btnbuscaProd";
-            this.btnbuscaProd.Size = new System.Drawing.Size(29, 27);
-            this.btnbuscaProd.TabIndex = 71;
-            this.btnbuscaProd.UseVisualStyleBackColor = true;
             // 
             // txtbusqProd
             // 
@@ -258,8 +260,8 @@
             // 
             this.cboOpcionBusProd.FormattingEnabled = true;
             this.cboOpcionBusProd.Items.AddRange(new object[] {
-            "Nombre",
-            "Còdigo"});
+            "Codigo",
+            "Nombre"});
             this.cboOpcionBusProd.Location = new System.Drawing.Point(357, 21);
             this.cboOpcionBusProd.Name = "cboOpcionBusProd";
             this.cboOpcionBusProd.Size = new System.Drawing.Size(121, 21);
@@ -268,6 +270,8 @@
             // 
             // btnguardarProd
             // 
+            this.btnguardarProd.Enabled = false;
+            this.btnguardarProd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnguardarProd.Location = new System.Drawing.Point(82, 327);
             this.btnguardarProd.Name = "btnguardarProd";
             this.btnguardarProd.Size = new System.Drawing.Size(75, 23);
@@ -278,15 +282,18 @@
             // 
             // btnsalirProd
             // 
+            this.btnsalirProd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnsalirProd.Location = new System.Drawing.Point(315, 327);
             this.btnsalirProd.Name = "btnsalirProd";
             this.btnsalirProd.Size = new System.Drawing.Size(98, 23);
             this.btnsalirProd.TabIndex = 66;
             this.btnsalirProd.Text = "Salir";
             this.btnsalirProd.UseVisualStyleBackColor = true;
+            this.btnsalirProd.Click += new System.EventHandler(this.btnsalirProd_Click);
             // 
             // btnmodificarProd
             // 
+            this.btnmodificarProd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnmodificarProd.Location = new System.Drawing.Point(185, 327);
             this.btnmodificarProd.Name = "btnmodificarProd";
             this.btnmodificarProd.Size = new System.Drawing.Size(75, 23);
@@ -297,6 +304,7 @@
             // 
             // btningresaProd
             // 
+            this.btningresaProd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btningresaProd.Location = new System.Drawing.Point(35, 36);
             this.btningresaProd.Name = "btningresaProd";
             this.btningresaProd.Size = new System.Drawing.Size(117, 27);
@@ -309,6 +317,7 @@
             // 
             this.dgProducto.AllowUserToAddRows = false;
             this.dgProducto.AllowUserToDeleteRows = false;
+            this.dgProducto.BackgroundColor = System.Drawing.Color.LightGray;
             this.dgProducto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgProducto.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idproducto,
@@ -322,6 +331,7 @@
             this.dgProducto.ReadOnly = true;
             this.dgProducto.Size = new System.Drawing.Size(645, 153);
             this.dgProducto.TabIndex = 63;
+            this.dgProducto.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgProducto_CellClick_1);
             // 
             // idproducto
             // 
@@ -366,13 +376,25 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 62;
             // 
+            // btnBuscar
+            // 
+            this.btnBuscar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnBuscar.Image = ((System.Drawing.Image)(resources.GetObject("btnBuscar.Image")));
+            this.btnBuscar.Location = new System.Drawing.Point(614, 17);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(29, 27);
+            this.btnBuscar.TabIndex = 73;
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click_1);
+            // 
             // MscProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(707, 600);
+            this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.btnbuscaProd);
             this.Controls.Add(this.txtbusqProd);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.cboOpcionBusProd);
@@ -415,7 +437,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnbuscaProd;
         private System.Windows.Forms.TextBox txtbusqProd;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox cboOpcionBusProd;
@@ -431,6 +452,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Tot;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Button btnBuscar;
 
     }
 }

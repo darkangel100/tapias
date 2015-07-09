@@ -20,28 +20,65 @@ namespace AplicacionProductosServicios.Vista
         string estado = "";
         int fila;
 
-        private void btnsalirPines_Click(object sender, EventArgs e)
+        private void btnsalirPines_Click_1(object sender, EventArgs e)
         {
             this.Close();
-            
+        }
+
+        private void btnmodifpines_Click(object sender, EventArgs e)
+        {
+            estado = "E";
+            Modificar();
+            txtregPines.Focus(); 
         }
 
         private void btnregistarpines_Click(object sender, EventArgs e)
         {
             groupBox1.Enabled = true;
             estado = "G";
+            txtregPines.Text = null;
             txtregPines.Focus();
         }
-        private void llenaPines()
+        private void llenar()
         {
             try
             {
+                PinesDB objpin = new PinesDB();
+                int resp;
+
+                objpin.getPines().Canpines = Convert.ToInt32(txtregPines.Text.Trim());
+                objpin.getPines().Idper = Sesiones.C.Idper;
+                resp = objpin.InsertePines(objpin.getPines());
+
+                if (resp == 0)
+                {
+                    MessageBox.Show("No se Ingresaron datos", "productos y servicios", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    MessageBox.Show("Los datos se han ingresado correctamente", "Productos y Servicos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    estado = "";
+                    llenaPines();
+                    Limpiar();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al ingresar datos," + ex.Message, "Productos Y Servicios", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void llenaPines()
+        {
+
+            try
+            {
                 dtgPines.Rows.Clear();
-                pinesDB objP = new pinesDB();
+                PinesDB objP = new PinesDB();
                 objP.getPines().Listapines = objP.TraePines();
                 if (objP.getPines().Listapines.Count == 0)
                 {
                     MessageBox.Show("No existen registros ingresados", "Productos y Servicios", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
                 }
                 else
                 {
@@ -60,77 +97,45 @@ namespace AplicacionProductosServicios.Vista
             }
         }
 
-        private void llenar()
-        {
-            try
-            {
-                pinesDB objpin = new pinesDB();
-                CuentaDB objC = new CuentaDB();
-                int resp;
-
-                objpin.getPines().Canpines = Convert.ToInt32(txtregPines.Text.Trim());
-                objpin.getPines().Idper = Sesiones.C.Idper;
-                resp = objpin.InsertePines(objpin.getPines());
-                //objpin.getPines().Fecha = Util.girafecha(dateTimePicker1.Value.ToShortDateString);
-                if (resp == 0)
-                {
-                    MessageBox.Show("No se Ingresaron datos", "productos y servicios", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-                else
-                {
-                    MessageBox.Show("Los datos se han ingresado correctamente", "Productos y Servicos", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    estado = "";
-                    llenaPines();
-                    Limpiar();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al ingresar datos," + ex.Message, "Productos Y Servicios", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         private void btnguardarPines_Click(object sender, EventArgs e)
         {
-            if (estado =="G")
+            if (estado == "G")
             {
                 llenar();
             }
+            if (estado == "E")
+            {
+                Editar();
+            }
         }
-
-        private void MscPines_Load(object sender, EventArgs e)
+        private void Limpiar()
         {
-            llenaPines();
-        }
-
-        private void dtgPines_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            fila = dtgPines.CurrentRow.Index;
-            btnmodifpines.Enabled = true;
+            txtregPines.Text = null;
             groupBox1.Enabled = false;
+            btnmodifpines.Enabled = false;
         }
         private void Modificar()
         {
             try
             {
-
                 txtregPines.Text = dtgPines.Rows[fila].Cells[2].Value.ToString();
                 groupBox1.Enabled = true;
-                
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al Presenatr Datos," + ex.Message, "Productos y Servicios", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void Editar()
         {
+
             try
             {
-                pinesDB objP = new pinesDB();
+                PinesDB objP = new PinesDB();
                 int resp;
-                objP.getPines().Idpines = Convert.ToInt32(dtgPines.Rows[fila].Cells[0].Value.ToString());
-                objP.getPines().Idper = Sesiones.C.Idper;
+                objP.getPines().Idpines = Convert.ToInt32(dtgPines.Rows[fila].Cells[0].Value);
                 objP.getPines().Canpines = Convert.ToInt32(txtregPines.Text);
                 resp = objP.ActualizaPines(objP.getPines());
 
@@ -151,19 +156,74 @@ namespace AplicacionProductosServicios.Vista
                 MessageBox.Show("Error al presentar datos," + ex.Message, "Productos y Servicios", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void BuscarFecha()
+        {
+            try
+            {
+                dtgPines.Rows.Clear();
+                PinesDB objP = new PinesDB();
+                string fec1, fec2;
+                fec1 = Util.girafecha(dtDesde.Value.ToShortDateString());
+                fec2 = Util.girafecha(dtHasta.Value.ToShortDateString());
 
-        private void btnmodifpines_Click(object sender, EventArgs e)
-        {
-            estado = "E";
-            Modificar();
-            txtregPines.Focus();
+                objP.getPines().Listapines = objP.BuscarPines(fec1, fec2);
+
+                if (objP.getPines().Listapines.Count == 0)
+                {
+                    MessageBox.Show("No existen registros de la fecha seleccionada", "Productos y Servicios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    llenaPines();
+                }
+                else
+                {
+                    dtgPines.Rows.Add(objP.getPines().Listapines.Count);
+                    for (int i = 0; i < objP.getPines().Listapines.Count; i++)
+                    {
+                        dtgPines.Rows[i].Cells[1].Value = objP.getPines().Listapines[i].Fecha;
+                        dtgPines.Rows[i].Cells[2].Value = objP.getPines().Listapines[i].Canpines;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al presentar datos," + ex.Message, "Productos y Servicios", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
-        private void Limpiar()
+
+        private void dtgPines_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            txtregPines.Text = null;
+            fila = dtgPines.CurrentRow.Index;
+            btnmodifpines.Enabled = true;
             groupBox1.Enabled = false;
+        }
+
+        private void MscPines_Load(object sender, EventArgs e)
+        {
+            llenaPines();
             btnmodifpines.Enabled = false;
         }
-       
+
+        private void btnbuscar_Click(object sender, EventArgs e)
+        {
+            BuscarFecha();
+        }
+
+        private void txtregPines_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char letra = e.KeyChar;
+            if ((letra < 48 || letra > 57) & letra != 8 & letra != 13)
+            {
+                e.Handled = true;
+            }
+            if (letra == 13)
+            {
+                btnguardarPines.Focus();
+            }
+        }
+
+        private void btnsalirPines_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
     }
 }

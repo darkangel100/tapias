@@ -13,14 +13,17 @@ namespace AplicacionProductosServicios.Vista
     public partial class MscVenta : Form
     {
         double totvent;
+        int cantp;//variablapara guardar la cantidada vendad de unproducto para poder modificar stock
+
         string fecha1v ,fecha2v;
         int fila;
+        string estado;
          public MscVenta()
         {
             InitializeComponent();
         }
 
-        private void traeproducto()
+        private void traeproducto()//metodo que permite listar en el combox los productos que que estan en estock
         {
             try
             {
@@ -113,6 +116,7 @@ namespace AplicacionProductosServicios.Vista
                        {
                            MessageBox.Show("Datos ingresados correctamente", "Productos y Servicios", MessageBoxButtons.OK, MessageBoxIcon.Information);
                            listarventasxfeca();
+                           estado = null;
                        }
                     }
 
@@ -138,6 +142,7 @@ namespace AplicacionProductosServicios.Vista
      
             VentaDB objv = new VentaDB();
             ProVentaDB objpv = new ProVentaDB();
+            double totales = 0;
             try
             {
                 fecha1v =Util.girafecha( dtp1.Value.ToShortDateString());
@@ -156,17 +161,18 @@ namespace AplicacionProductosServicios.Vista
                         dgventa.Rows.Add(1);
                         dgventa.Rows[i].Cells[0].Value = objv.getventa().Listavent[i].Id_vent;
                         dgventa.Rows[i].Cells[1].Value = objv.getventa().Listavent[i].Fecha;
-                       // dgventa.Rows[i].Cells[2].Value = objv.getventa().Listavent[i].Id_vent;
-                        //objp.setProducto(objp.Traeproducto(dgit.Rows[i].Cells[1].Value.ToString()));
                         objpv.setprodventa(objpv.listacon(Convert.ToInt32(objv.getventa().Listavent[i].Id_vent)));
                         dgventa.Rows[i].Cells[2].Value = objpv.getprodventa().Cod_pro;
                         dgventa.Rows[i].Cells[3].Value = objv.getventa().Listavent[i].Nom_pro;
                         dgventa.Rows[i].Cells[4].Value = objpv.getprodventa().Val_unit;
                         dgventa.Rows[i].Cells[5].Value = objpv.getprodventa().Can_vent;
                         dgventa.Rows[i].Cells[6].Value = objpv.getprodventa().Tot_vent;
+                        totales += objpv.getprodventa().Tot_vent;
+                    
                     }
-
+                    txttot.Text ="$ "+ totales.ToString();
                 }
+                
             }
             catch (Exception ex)
             {
@@ -181,7 +187,7 @@ namespace AplicacionProductosServicios.Vista
             ProductoDB objp = new ProductoDB();
            
             int respven;
-            //int resp;
+            int resp;
             int repv;
             
             try
@@ -200,12 +206,32 @@ namespace AplicacionProductosServicios.Vista
                     ProVentaDB objpv = new ProVentaDB();
                     objpv.getprodventa().Id_venta = Convert.ToInt32(dgventa.Rows[fila].Cells[0].Value);
                     objpv.getprodventa().Val_unit = Convert.ToDouble(txtvaloruni.Text.Trim());
+                    objpv.getprodventa().Can_vent = Convert.ToInt32(txtcantpedida.Text.Trim());
                     objpv.getprodventa().Tot_vent = totvent;
                     repv = objpv.modifcapv(objpv.getprodventa());
                     if (repv > 0)
                     {
-                        //if(cantpe<Convert.ToInt32(txtcantpedida.Text.Trim())
-                        
+                       
+                        if(cantp==Convert.ToInt32(txtcantpedida.Text.Trim()))
+                        {
+                            MessageBox.Show("No hay nesesiada de modificar stok del producto","Productos y Servicios",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                        }
+                        if (cantp > Convert.ToInt32(txtcantpedida.Text.Trim()))
+                        {
+                            cantp = cantp - Convert.ToInt32(txtcantpedida.Text.Trim());
+                            resp = objp.sumastock(Convert.ToInt32(dgventa.Rows[fila].Cells[2].Value), cantp);
+
+                        }
+                        else
+                        {
+                            cantp =  Convert.ToInt32(txtcantpedida.Text.Trim())-cantp;
+                            resp = objp.Actualizacantidad(Convert.ToInt32(dgventa.Rows[fila].Cells[2].Value), cantp);
+                        }
+                        if (resp > 0)
+                        {
+                            MessageBox.Show("Datos datos y Stok actualisado correctamente", "Productos y Servicios", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            listarventasxfeca();
+                        }
 
                     }
                 }
@@ -236,12 +262,24 @@ namespace AplicacionProductosServicios.Vista
 
         private void btnmodivent_Click(object sender, EventArgs e)
         {
-
+                       
+            cantp = Convert.ToInt32(dgventa.Rows[fila].Cells[5].Value);
+            estado = "m";
+            groupBox1.Enabled = true;
+            asignacampos();
         }
 
         private void btnguardar_Click(object sender, EventArgs e)
         {
-            registrar();
+            if (estado == "n")
+            {
+                registrar();
+            }
+            if (estado == "m")
+            {
+                modificar();
+            }
+            
             limpiaCampos();
             groupBox1.Enabled = false;
         }
@@ -250,6 +288,7 @@ namespace AplicacionProductosServicios.Vista
         {
             panel1.Enabled = true;
             limpiaCampos();
+            estado = "n";
         }
 
         private void cbocod_SelectedIndexChanged(object sender, EventArgs e)
@@ -320,6 +359,33 @@ namespace AplicacionProductosServicios.Vista
             }
        
                   }
+        private void asignacampos()
+        {
+            txtnompro.Text = dgventa.Rows[fila].Cells[3].Value.ToString();
+            txtcantpedida.Text = dgventa.Rows[fila].Cells[5].Value.ToString();
+            txtvaloruni.Text = dgventa.Rows[fila].Cells[4].Value.ToString();
+
+        }
+
+       
+        private void btnsalir_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void txtnompro_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+     
+
+       
+       
+
+      
+       
+
 
         
        

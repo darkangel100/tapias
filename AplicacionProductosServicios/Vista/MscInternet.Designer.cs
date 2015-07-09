@@ -306,6 +306,7 @@
             this.Controls.Add(this.btnsalir);
             this.Controls.Add(this.btnmodificar);
             this.Controls.Add(this.dginternet);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "MscInternet";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Text = "MscInternet";

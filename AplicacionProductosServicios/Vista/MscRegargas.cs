@@ -17,20 +17,17 @@ namespace AplicacionProductosServicios.Vista
             InitializeComponent();
         }
 
-        pinesDB pines = new pinesDB();
+        PinesDB pines = new PinesDB();
         RecargaDB objRec = new RecargaDB();
         string estado = "";
         int fila;
 
-        private void btnregRecaRecarga_Click_1(object sender, EventArgs e)
-        {
-            groupBox1.Enabled = true;
-            estado = "G";
-        }
+        
         private void ListarRecargas()
         {
             try
             {
+                double valor = 0;
                 dgrecarga.Rows.Clear();
 
                 objRec.GetRecarga().ListaRecarga = objRec.TraeRecargas();
@@ -48,8 +45,11 @@ namespace AplicacionProductosServicios.Vista
                         dgrecarga.Rows[i].Cells[1].Value = objRec.GetRecarga().ListaRecarga[i].Num;
                         dgrecarga.Rows[i].Cells[2].Value = objRec.GetRecarga().ListaRecarga[i].Fecha;
                         dgrecarga.Rows[i].Cells[3].Value = objRec.GetRecarga().ListaRecarga[i].Valor;
+                        valor += objRec.GetRecarga().ListaRecarga[i].Valor;
+
                     }
                 }
+                txttotal.Text = valor.ToString();
             }
 
             catch (Exception ex)
@@ -61,27 +61,31 @@ namespace AplicacionProductosServicios.Vista
         {
             try
             {
-                pinesDB objPines = new pinesDB();
+                PinesDB objPines = new PinesDB();
                 int resp, pines;
                 CuentaDB objC = new CuentaDB();
                 objRec.GetRecarga().IdPer = Sesiones.C.Idper;
                 objRec.GetRecarga().Num = Convert.ToInt32(txtNumRecarga.Text);
-                objRec.GetRecarga().Valor = Convert.ToDouble(cbovalor.Text.ToString());
-
-
+                objRec.GetRecarga().Valor = Convert.ToInt32(cbovalor.Text.ToString());
+                pines = int.Parse(txtpines.Text);
+                int val = int.Parse(cbovalor.Text);
+         
                 resp = objRec.IngresaRecarga(objRec.GetRecarga());
 
                 if (resp == 0)
                 {
                     MessageBox.Show("No se ingresaron datos de la Recarga", "Productos y Serrvicios", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-                else
+                }               
+                    
+                
+                else if (pines > val)
                 {
                     MessageBox.Show("La Recarga se Ingreso Correctamente", "Productos y servicios", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     estado = "";
                     ListarRecargas();
-                    pines = objPines.getPines().Listapines[fila].Canpines;
-                    txtpines.Text += pines.ToString();
+                    reducirPines();
+                    Limpiarcampos();
+
                 }
             }
             catch (Exception ex)
@@ -89,15 +93,6 @@ namespace AplicacionProductosServicios.Vista
                 MessageBox.Show("Error al Ingresar datos," + ex.Message, "Productos y Servicios", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void btnguardarRecarga_Click(object sender, EventArgs e)
-        {
-            if (estado == "G")
-            {
-                RegistraRecarga();
-            }
-        }
-
         private void btnsalirRecarga_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -106,14 +101,19 @@ namespace AplicacionProductosServicios.Vista
         private void MscRegargas_Load(object sender, EventArgs e)
         {
             ListarRecargas();
-            cogervalores();
+            //cogervalores();
             txtpines.Text = pines.sumapines().ToString();
+            int pin = int.Parse(txtpines.Text);
+            if (pin == 5)
+            {
+                MessageBox.Show("Usted solo cuenta con un Valor de 5 Pines", "Productos y Servicios", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            if (pin == 0)
+            {
+                MessageBox.Show("No hay Recargas", "Productos y Servicios", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
-        private void cogervalores()
-        {
-            pinesDB objpines = new pinesDB();
-            txtpines.Text = objpines.getPines().Canpines.ToString();
-        }
+       
         private void BuscarRecarga()
         {
             int num = int.Parse(txtbusRecarga.Text);
@@ -121,7 +121,7 @@ namespace AplicacionProductosServicios.Vista
             objRec.GetRecarga().ListaRecarga = objRec.BuscarRecarga(num);
             if (objRec.GetRecarga().ListaRecarga.Count == 0)
             {
-                MessageBox.Show("No se encuentra el nuemro");
+                MessageBox.Show("No se encuentra el nuemero, Ingrese nuevamente","Producutos y Servicios",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
             }
             else
             {
@@ -136,6 +136,12 @@ namespace AplicacionProductosServicios.Vista
                 }
             }
         }
+        private void Limpiarcampos()
+        {
+            txtNumRecarga.Text = null;
+            groupBox1.Enabled = false;
+            cbovalor.Text = null;
+        }
 
         private void btnbuscar_Click(object sender, EventArgs e)
         {
@@ -147,5 +153,107 @@ namespace AplicacionProductosServicios.Vista
             fila = dgrecarga.CurrentRow.Index;
         }
 
+        private void btnregRecaRecarga_Click(object sender, EventArgs e)
+        {
+            groupBox1.Enabled = true;
+            estado = "G";
+            txtNumRecarga.Focus();          
+
+        }
+
+        private void btnguardarRecarga_Click_1(object sender, EventArgs e)
+        {
+            int pin = Convert.ToInt32(txtpines.Text);
+            double valor = Convert.ToDouble(cbovalor.Text);
+            if (estado == "G")
+            {
+                if (valor < pin)
+                {
+
+                    RegistraRecarga();
+                }
+                else
+                {
+                    MessageBox.Show("No hay Recargas, No cuenta con un Registro de Pines Suficientes", "Productos y Servicios", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void btnbuscar_Click_1(object sender, EventArgs e)
+        {
+            BuscarRecarga();
+        }
+
+        private void BuscarFecha()
+        {
+            try
+            {
+                double tot = 0;
+                string fecha1, fecha2;
+                dgrecarga.Rows.Clear();
+                fecha1 =Util.girafecha( dtpdesde.Value.ToShortDateString());
+                fecha2 = Util.girafecha(dtphasta.Value.ToShortDateString());
+                objRec.GetRecarga().ListaRecarga = objRec.BuscarFechra(fecha1, fecha2);
+               
+                if (objRec.GetRecarga().ListaRecarga.Count == 0)
+                {
+                    MessageBox.Show("No se encuentra la busqueda, No hay Registros en las fechas Seleccionadas", "Productos y Servcios", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    dgrecarga.Rows.Add(objRec.GetRecarga().ListaRecarga.Count);
+
+                    for (int i = 0; i < objRec.GetRecarga().ListaRecarga.Count; i++)
+                    {
+                        dgrecarga.Rows[i].Cells[0].Value = objRec.GetRecarga().ListaRecarga[i].IdRec;
+                        dgrecarga.Rows[i].Cells[1].Value = objRec.GetRecarga().ListaRecarga[i].Num;
+                        dgrecarga.Rows[i].Cells[2].Value = objRec.GetRecarga().ListaRecarga[i].Fecha;
+                        dgrecarga.Rows[i].Cells[3].Value = objRec.GetRecarga().ListaRecarga[i].Valor;
+                        tot += objRec.GetRecarga().ListaRecarga[i].Valor;
+                    }
+                    txttotal.Text = tot.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al presentar datos," + ex.Message, "Productos y Servicios", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void btnbusFecha_Click(object sender, EventArgs e)
+        {
+            BuscarFecha();
+        }
+        private void reducirPines()
+        {
+            int recarga = Convert.ToInt32(cbovalor.Text);
+            int aux = recarga;
+            if(pines.ListarPinesTotalMayorCero().Count>0)
+            {
+                int to = int.Parse(txtpines.Text);
+                to -= aux;
+                txtpines.Text = to.ToString();
+                for (int i = 0; i < pines.ListarPinesTotalMayorCero().Count ;i++ )
+                {
+                    if (pines.ListarPinesTotalMayorCero()[i].Total_pines >= aux)
+                    {
+                        pines.ActualizaCantidad(aux, pines.ListarPinesTotalMayorCero()[i].Idpines);
+                        //MessageBox.Show(aux+" 1 "+ pines.ListarPinesTotalMayorCero()[i].Idpines);
+                        break;
+                    }
+                    else
+                    {
+                        //pines.ActualizaCantidad(aux, pines.ListarPinesTotalMayorCero()[i].Idpines);
+                        aux = aux - pines.ListarPinesTotalMayorCero()[i].Total_pines;
+                        //MessageBox.Show(aux + " 1 " + pines.ListarPinesTotalMayorCero()[i].Idpines);
+                        pines.ActualizaCantidad(pines.ListarPinesTotalMayorCero()[i].Total_pines, pines.ListarPinesTotalMayorCero()[i].Idpines);
+                    }
+                }
+            }
+        }
+
+        private void btnsalirRecarga_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
