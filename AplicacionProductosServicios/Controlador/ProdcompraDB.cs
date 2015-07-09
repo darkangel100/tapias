@@ -13,7 +13,7 @@ namespace AplicacionProductosServicios.Controlador
         prod_comp pc = null;
         conexion con = new conexion();
 
-        public prod_comp getprocomp()
+        public prod_comp getprocomp() //
         {
             if (pc == null)
             {
@@ -26,7 +26,7 @@ namespace AplicacionProductosServicios.Controlador
             this.pc = proc;
         }
 
-        public int registra(prod_comp procom)
+        public int registra(prod_comp procom)// metodo que permite registar datos  en la tabla prod_comp donde recibe un parametro de tipo prod_comp y retorna un dato de tipo entero y si se ingreso bein los datos en la tabla retorna 1 caso contaria retor 0
         {
             MySqlCommand cmd;
             MySqlConnection cn = con.getconection();
@@ -53,6 +53,46 @@ namespace AplicacionProductosServicios.Controlador
             cn.Close();
             cmd = null;
             return resp;
-        }
+        }// fin del metodo registar
+
+        public prod_comp listacon(int id_comp)// metodo que permite trer un datos de la tabla prod_comp de tipo entero donde retorna la cantidad de productos comprados donde recibe un parametro de tipo entero  
+        {
+
+            ProdcompraDB pc = null;
+
+            MySqlCommand cmd;
+            MySqlConnection cn = con.getconection();
+            try
+            {
+
+                string sqlpventa = "Select * from prod_comp where id_com= " + id_comp + " ";
+                cmd = new MySqlCommand(sqlpventa, cn);
+                cmd.CommandType = CommandType.Text;
+                cn.Open();
+                MySqlDataReader dr = cmd.ExecuteReader();
+               while (dr.Read())
+                {
+                    pc = new ProdcompraDB();
+                    pc.getprocomp().Cantp_como = Convert.ToInt32(dr[2]);
+                }
+                dr.Close();
+            }
+            catch (MySqlException ex)
+            {
+                pc = null;
+                throw ex;
+
+            }
+            catch (Exception ex)
+            {
+                pc = null;
+                throw ex;
+            }
+            cn.Close();
+            cmd = null;
+            return pc.getprocomp();
+
+
+        }// fin del metdo listacon
     }
 }

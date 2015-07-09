@@ -34,7 +34,6 @@ namespace AplicacionProductosServicios.Controlador
             try
             {
 
-                // string sqlcuenta = "Insert cuenta values(" + cuen.Idcuenta + "," + cuen.Idper + ",'" + cuen.Clave + "','" + cuen.Nomper + "','" + cuen.Estper + "','" + cuen.Ultacceso + "')";
                 string sqlven = "Insert pro_vent values(" + Pvent.Id_venta + "," + Pvent.Cod_pro + "," + Pvent.Can_vent + "," + Pvent.Val_unit + "," + Pvent.Tot_vent + ")";
                 cmd = new MySqlCommand(sqlven, cn);
                 cn.Open();

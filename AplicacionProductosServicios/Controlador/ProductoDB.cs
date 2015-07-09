@@ -202,7 +202,122 @@ namespace AplicacionProductosServicios.Controlador
             return resp;
 
         }
+        public int ActualizaProducto(Producto pro)
+        {
+            MySqlCommand cmd;
+            MySqlConnection cn = con.getconection();
+            int resp;
 
+            try
+            {
+                string sqlprod = "update producto set nombre='" + pro.NombrePro + "',pre_com=" + pro.Precom + ",pre_vent=" + pro.Prevent + ",stock=" + pro.Stock + ",cant_gan=" + pro.Cantgan + ", est_pro='" + pro.Estprod + "' Where cod_prod=" + pro.Codprod + "";
+                cmd = new MySqlCommand(sqlprod, cn);
+                cmd.CommandType = CommandType.Text;
+                cn.Open();
+                resp = cmd.ExecuteNonQuery();
+            }
+            catch (MySqlException ex)
+            {
+                resp = 0;
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                resp = 0;
+                throw ex;
+            }
+            cmd = null;
+            cn.Close();
+            return resp;
+        }
+        public List<Producto> BuscarProdCod(string cod)
+        {
+            ProductoDB pro = null;
+            List<Producto> BuscaProducto = new List<Producto>();
+            MySqlCommand cmd;
+            MySqlConnection cn = con.getconection();
+
+            try
+            {
+                string sqlprod = "select * from producto Where cod_prod='" + cod + "' And est_pro='A'";
+                cmd = new MySqlCommand(sqlprod, cn);
+                cmd.CommandType = CommandType.Text;
+                cn.Open();
+                MySqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    pro = new ProductoDB();
+                    pro.getProductos().Codprod = Convert.ToInt32(dr[0]);
+                    pro.getProductos().NombrePro = dr[1].ToString();
+                    pro.getProductos().Precom = Convert.ToDouble(dr[2].ToString());
+                    pro.getProductos().Prevent = Convert.ToDouble(dr[3].ToString());
+                    pro.getProductos().Stock = Convert.ToInt32(dr[4].ToString());
+                    pro.getProductos().Cantgan = Convert.ToDouble(dr[5].ToString());
+                    pro.getProductos().Estprod = dr[6].ToString();
+                    BuscaProducto.Add(pro.getProductos());
+
+                }
+                dr.Close();
+            }
+            catch (MySqlException ex)
+            {
+                pro = null;
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                pro = null;
+                throw ex;
+            }
+            cmd = null;
+            cn.Close();
+            return BuscaProducto;
+        }
+        public List<Producto> BuscarProdNom(string nombre)
+        {
+            ProductoDB pro = null;
+            List<Producto> BuscaProducto = new List<Producto>();
+            MySqlCommand cmd;
+            MySqlConnection cn = con.getconection();
+
+            try
+            {
+                string sqlprod = "Select * from producto WHERE nombre LIKE '%" + nombre + "%' and est_pro='A'";
+                cmd = new MySqlCommand(sqlprod, cn);
+                cmd.CommandType = CommandType.Text;
+                cn.Open();
+                MySqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    pro = new ProductoDB();
+                    pro.getProductos().Codprod = Convert.ToInt32(dr[0]);
+                    pro.getProductos().NombrePro = dr[1].ToString();
+                    pro.getProductos().Precom = Convert.ToDouble(dr[2].ToString());
+                    pro.getProductos().Prevent = Convert.ToDouble(dr[3].ToString());
+                    pro.getProductos().Stock = Convert.ToInt32(dr[4].ToString());
+                    pro.getProductos().Cantgan = Convert.ToDouble(dr[5].ToString());
+                    pro.getProductos().Estprod = dr[6].ToString();
+                    BuscaProducto.Add(pro.getProductos());
+
+                }
+                dr.Close();
+            }
+            catch (MySqlException ex)
+            {
+                pro = null;
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                pro = null;
+                throw ex;
+            }
+            cmd = null;
+            cn.Close();
+            return BuscaProducto;
+        }
         
     }
         

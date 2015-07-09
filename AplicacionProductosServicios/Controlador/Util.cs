@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using AplicacionProductosServicios.Modelo;
 
 namespace AplicacionProductosServicios.Controlador
 {
@@ -19,6 +20,11 @@ namespace AplicacionProductosServicios.Controlador
             string fec = "";
             fec = f.Substring(6, 4) + "-" + f.Substring(3, 2) + "-" + f.Substring(0, 2);
             return fec;
+        }
+        public Usuario ValidarCedula(string ced)
+        {
+            Usuario per = null;
+            return per;
         }
 
     }

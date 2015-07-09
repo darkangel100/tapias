@@ -89,6 +89,53 @@ namespace AplicacionProductosServicios.Controlador
             cmd = null;
             return nro;
         }
+        public List<compra> listacompra(string fechac1, string fechac2) // metodo llamado listaventa el cual me permite listar los datos por fecha  dela tabla venta de la base de datos endon recive dos parameros de tipo string y retorna una lista de tipo venta
+        {
+
+            CompraDB comp = null;
+            List<compra> compra = new List<compra>();
+            MySqlCommand cmd;
+            MySqlConnection cn = con.getconection();
+            try
+            {
+                // string sqlinter = "SELECT * FROM internet WHERE CAST(fecha AS DATE) BETWEEN '" + fechas1 + "' AND '" + fechas2 + "'";
+                string sqlinter = "SELECT * FROM compra WHERE CAST(fecha AS DATE) BETWEEN '" + fechac1 + "' AND '" + fechac2 + "'";
+                cmd = new MySqlCommand(sqlinter, cn);
+                cmd.CommandType = CommandType.Text;
+                cn.Open();
+                MySqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    comp = new CompraDB();
+                    comp.getcompra().Id_comp = Convert.ToInt32(dr[0]);
+                    comp.getcompra().Nom_pro = dr[2].ToString();
+                    comp.getcompra().Val_comp=Convert.ToDouble(dr[3]);
+                    comp.getcompra().Cant = Convert.ToInt32(dr[1]);
+                    comp.getcompra().Tot_comp = Convert.ToDouble(dr[4]);
+                    comp.getcompra().Fecha = dr[5].ToString();
+                    compra.Add(comp.getcompra());
+                   
+                 
+                }
+                dr.Close();
+            }
+            catch (MySqlException ex)
+            {
+                comp = null;
+                throw ex;
+
+            }
+            catch (Exception ex)
+            {
+                comp = null;
+                throw ex;
+            }
+            cn.Close();
+            cmd = null;
+            return compra;
+
+
+        }
 
     }
 }

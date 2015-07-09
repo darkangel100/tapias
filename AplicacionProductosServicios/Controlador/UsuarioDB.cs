@@ -10,24 +10,25 @@ namespace AplicacionProductosServicios.Controlador
 {
     class UsuarioDB
     {
-        conexion con = new conexion();
-        Usuario per = null;
-        public Usuario getUsuario()
+        conexion con = new conexion();//Coneccion con la base de datos...
+        Usuario per = null;//declaracion de una variable nula para despues asinarle valores propios de su clase..
+        public Usuario getUsuario()//metodo que me obtiene y me retorna un valor propio de su clase
         {
             if (this.per == null)
             {
-                this.per = new Usuario();
+                this.per = new Usuario();//le asigno un valor ala variable que estab nula..instanciando la clase..
 
             }
-            return this.per;
+            return this.per;//me retorna un valor propio d esu clase aunq sea nulo..
         }
-        public Usuario setUsuario(Usuario pers)
+        public Usuario setUsuario(Usuario pers)//Metodo que me permite asignarle valores a las entidades recibiendome un objeto propio de su clase..
         {
-            per = pers;
+            per = pers;//la asina un valor a la varuable que estaba nula...
             return pers;
         }
 
-        public int traeid()
+        public int traeid()//metodo que me permite generar un id...como llave primaria para esta clase...
+
         {
             int num = 0;
             MySqlCommand cmd;
@@ -38,10 +39,11 @@ namespace AplicacionProductosServicios.Controlador
                 cmd = new MySqlCommand(sqlrol, cn);
                 cmd.CommandType = CommandType.Text;
                 cn.Open();
-                MySqlDataReader dr = cmd.ExecuteReader();
-                while (dr.Read())
+                MySqlDataReader dr = cmd.ExecuteReader();//lee el contenido de la base de datos para hacer la condicion...
+
+                while (dr.Read())//lee el contenido segun eso para realizar el bucle....
                 {
-                    if (DBNull.Value == dr["num"])
+                    if (DBNull.Value == dr["num"])//es una condicion que me representa un valor que no existe 
                     {
                         num = 0;
                     }
@@ -50,8 +52,9 @@ namespace AplicacionProductosServicios.Controlador
                         num = Convert.ToInt32(dr["num"]);
                     }
                 }
-                dr.Close();
+                dr.Close();//Fin del bucle,...
             }
+                //Presenta excepciones o errores...
             catch (MySqlException ex)
             {
                 num = 0;
@@ -67,7 +70,7 @@ namespace AplicacionProductosServicios.Controlador
             return num;
         }
 
-        public int InsertaUsuario(Usuario per)
+        public int InsertaUsuario(Usuario per)//Metodo para insertar en la base de datos recibiendome un valor propio del modelo y me retorna un entero...
         {
             MySqlCommand cmd;
             MySqlConnection cn = con.getconection();
@@ -77,9 +80,10 @@ namespace AplicacionProductosServicios.Controlador
                 string sqlcad = "Insert persona Values(" + per.Idper + ",'" + per.Cedper + "','" + per.Apeper + "','" + per.Nomper + "','" + per.Dirper + "','" + per.Telper + "','" + per.Estper + "'," + per.Idrol + ")";
                 cmd = new MySqlCommand(sqlcad, cn);
                 cmd.CommandType = CommandType.Text;
-                cn.Open();
-                resp = cmd.ExecuteNonQuery();
+                cn.Open();//Abre la coneccion  con la base de datos 
+                resp = cmd.ExecuteNonQuery();//me asigna un valor a esta variable si esta bien sera un valor diferente de 0..
             }
+                //Presenta excepciones o errores...
             catch (MySqlException ex)
             {
                 resp = 0;
@@ -95,7 +99,7 @@ namespace AplicacionProductosServicios.Controlador
             cn.Close();
             return resp;
         }
-        public List<Usuario> TraePersonas(string estado)
+        public List<Usuario> TraePersonas(string estado)//Metodo para que me traiga una lista de personas para listarme en la tabla de su entidad..
         {
             UsuarioDB persona = null;
             List<Usuario> listper = new List<Usuario>();
@@ -104,7 +108,7 @@ namespace AplicacionProductosServicios.Controlador
 
             try
             {
-                string sqlcad = "Select * from persona where est_per='" + estado + "' order by ape_per";
+                string sqlcad = "Select * from persona where est_per='" + estado + "' order by ape_per des limit 30";
                 cmd = new MySqlCommand(sqlcad, cn);
                 cmd.CommandType = CommandType.Text;
                 cn.Open();
@@ -140,7 +144,7 @@ namespace AplicacionProductosServicios.Controlador
             cmd = null;
             return listper;
         }
-        public Usuario Traepersona(string ced)
+        public Usuario Traepersona(string ced)//Metodo que me trae los atributos de la base de datos para modificarlos y volverlos a enviar..
         {
             UsuarioDB persona = null;
             MySqlCommand cmd;
@@ -182,7 +186,8 @@ namespace AplicacionProductosServicios.Controlador
             cn.Close();
             return persona.getUsuario();
         }
-        public int ActualizaUsuario(Usuario secre)
+        public int ActualizaUsuario(Usuario secre)//Metodo que me permite modificar el usuario..recibiendome un valor propio de su clase y me retorna un entero..
+
         {
             MySqlCommand cmd;
             MySqlConnection cn = con.getconection();
@@ -210,7 +215,7 @@ namespace AplicacionProductosServicios.Controlador
             cn.Close();
             return resp;
         }
-        public List<Usuario> Buscarusuario(string ced)
+        public List<Usuario> Buscarusuario(string ced)//Metodo que me permite realizar una busqueda por cedula..
         {
             UsuarioDB usu = null;
             List<Usuario> BuscaUsuario = new List<Usuario>();
@@ -254,7 +259,7 @@ namespace AplicacionProductosServicios.Controlador
             cn.Close();
             return BuscaUsuario;
         }
-        public List<Usuario> BuscarPorApellido(string ape)
+        public List<Usuario> BuscarPorApellido(string ape)//Metodo para realizar la busqueda por apellido...
         {
             UsuarioDB usu = null;
             List<Usuario> BuscaUsuario = new List<Usuario>();
