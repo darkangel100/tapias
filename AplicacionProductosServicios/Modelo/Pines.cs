@@ -7,6 +7,10 @@ namespace AplicacionProductosServicios.Modelo
 {
     class Pines
     {
+
+        //METODOS DONDE SE DECLARA TODOS LOA ATRIBUTOS DE LA TABLA DE LA BASE DE DATOS
+        // YA QUE ATRAVES DE SU PROPIEDAD SE PUEDE INGRESAR AL DATO Y ENVIARLE VALORES..
+        //cUANDO HAY VARIOS VALORES SE LOS GUARDA EN UNA LISTA....
         private int id_pines;
 
         public int Idpines
@@ -21,9 +25,9 @@ namespace AplicacionProductosServicios.Modelo
             get { return id_per; }
             set { id_per = value; }
         }
-        private DateTime fecha;
+        private string fecha;
 
-        public DateTime Fecha
+        public string Fecha
         {
             get { return fecha; }
             set { fecha = value; }
@@ -41,6 +45,13 @@ namespace AplicacionProductosServicios.Modelo
         {
             get { return listapines; }
             set { listapines = value; }
+        }
+        private int total_pines;
+
+        public int Total_pines
+        {
+            get { return total_pines; }
+            set { total_pines = value; }
         }
     }
 }

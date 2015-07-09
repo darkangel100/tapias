@@ -42,5 +42,12 @@ namespace AplicacionProductosServicios.Modelo
             get { return listainternet; }
             set { listainternet = value; }
         }
+        private double tot_int;
+
+        public double Totint
+        {
+            get { return tot_int; }
+            set { tot_int = value; }
+        }
     }
 }

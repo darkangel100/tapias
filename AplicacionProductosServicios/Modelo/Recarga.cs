@@ -7,6 +7,9 @@ namespace AplicacionProductosServicios.Modelo
 {
     class Recarga
     {
+        //METODOS DONDE SE DECLARA TODOS LOA ATRIBUTOS DE LA TABLA DE LA BASE DE DATOS
+        // YA QUE ATRAVES DE SU PROPIEDAD SE PUEDE INGRESAR AL DATO Y ENVIARLE VALORES..
+        //cUANDO HAY VARIOS VALORES SE LOS GUARDA EN UNA LISTA....
         private int id_rec;
 
         public int IdRec
@@ -35,9 +38,9 @@ namespace AplicacionProductosServicios.Modelo
             get { return valor; }
             set { valor = value; }
         }
-        private DateTime fecha;
+        private string fecha;
 
-        public DateTime Fecha
+        public string Fecha
         {
             get { return fecha; }
             set { fecha = value; }
@@ -48,6 +51,13 @@ namespace AplicacionProductosServicios.Modelo
         {
             get { return listarecarga; }
             set { listarecarga = value; }
+        }
+        private double tot_rec;
+
+        public double Totrec
+        {
+            get { return tot_rec; }
+            set { tot_rec = value; }
         }
     }
 }
